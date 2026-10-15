@@ -147,7 +147,7 @@
         </div>
 
         <!-- Network motif: the studio hub linking its three products -->
-        <figure class="relative mx-auto w-full max-w-md lg:max-w-none" aria-label="Raqium connecting RentKar, DriveSync and SyncBite">
+        <figure class="relative mx-auto w-full max-w-md lg:max-w-none" aria-label="Raqium connecting RentKar, DriveSync, SyncBite and TrueDrive">
           <svg viewBox="0 0 420 380" class="w-full" role="img" aria-hidden="true">
             <defs>
               <linearGradient id="ln" x1="0" y1="0" x2="1" y2="1">
@@ -165,6 +165,8 @@
               <path class="net-line" style="animation-delay:1s" d="M345 95 L405 150" />
               <path class="net-line" style="animation-delay:1.1s" d="M200 320 L130 360" />
               <path class="net-line" style="animation-delay:1.1s" d="M200 320 L280 362" />
+              <path class="net-line" style="animation-delay:1.2s" d="M352 270 L405 235" />
+              <path class="net-line" style="animation-delay:1.2s" d="M352 270 L398 328" />
               <path class="net-line" style="animation-delay:1.2s" d="M80 80 L345 95" stroke-dasharray="4 6" />
             </g>
             <!-- main links -->
@@ -172,6 +174,7 @@
               <path class="net-line" style="animation-delay:.2s" d="M210 190 L80 80" />
               <path class="net-line" style="animation-delay:.35s" d="M210 190 L345 95" />
               <path class="net-line" style="animation-delay:.5s" d="M210 190 L200 320" />
+              <path class="net-line" style="animation-delay:.65s" d="M210 190 L352 270" />
             </g>
             <!-- satellite nodes -->
             <g fill="#0B132B" stroke="rgba(0,242,254,.5)" stroke-width="1.2">
@@ -181,6 +184,8 @@
               <circle class="net-node" style="animation-delay:1.6s" cx="405" cy="150" r="4" />
               <circle class="net-node" style="animation-delay:1.7s" cx="130" cy="360" r="4" />
               <circle class="net-node" style="animation-delay:1.7s" cx="280" cy="362" r="4" />
+              <circle class="net-node" style="animation-delay:1.8s" cx="405" cy="235" r="4" />
+              <circle class="net-node" style="animation-delay:1.8s" cx="398" cy="328" r="4" />
             </g>
             <!-- hub -->
             <circle cx="210" cy="190" r="80" fill="url(#hubGlow)" class="net-pulse" />
@@ -202,6 +207,10 @@
                 <circle cx="200" cy="320" r="9" fill="#3D7BFF" />
                 <text x="232" y="325" text-anchor="start">SyncBite</text>
               </g>
+              <g class="net-node" style="animation-delay:1.65s">
+                <circle cx="352" cy="270" r="9" fill="#00F2FE" />
+                <text x="352" y="296" text-anchor="middle" dy="14">TrueDrive</text>
+              </g>
             </g>
           </svg>
         </figure>
@@ -217,8 +226,8 @@
           </div>
           <div class="flex items-center gap-4 border-t border-white/5 px-6 py-5 sm:border-l sm:border-t-0">
             <dt class="sr-only">Products</dt>
-            <dd class="text-3xl font-extrabold text-teal-bright">3</dd>
-            <dd class="text-sm leading-snug text-ink-300">Core Products<br />In Active Development</dd>
+            <dd class="text-3xl font-extrabold text-teal-bright">4</dd>
+            <dd class="text-sm leading-snug text-ink-300">Core Products<br />In Development</dd>
           </div>
           <div class="flex items-center gap-4 border-t border-white/5 px-6 py-5 sm:border-l sm:border-t-0">
             <dt class="sr-only">Security</dt>
@@ -254,7 +263,7 @@
       <div class="relative mx-auto max-w-page px-4 sm:px-6">
         <div class="max-w-2xl">
           <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Our Products</h2>
-          <p class="mt-3 text-lg text-ink-300">Three platforms, each built to remove a costly point of friction in its market.</p>
+          <p class="mt-3 text-lg text-ink-300">Four platforms, each built to remove a costly point of friction in its market.</p>
         </div>
 
         <div class="mt-10 grid gap-6 lg:grid-cols-[17rem_1fr]">
@@ -270,6 +279,10 @@
             <button role="tab" id="tab-syncbite" aria-controls="panel-syncbite" aria-selected="false" tabindex="-1" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
               <span class="tab-name block text-lg font-bold text-ink-100">SyncBite</span>
               <span class="mt-0.5 block text-xs text-ink-400">Hospitality middleware</span>
+            </button>
+            <button role="tab" id="tab-truedrive" aria-controls="panel-truedrive" aria-selected="false" tabindex="-1" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
+              <span class="tab-name block text-lg font-bold text-ink-100">TrueDrive</span>
+              <span class="mt-0.5 block text-xs text-ink-400">UK car marketplace</span>
             </button>
           </div>
 
@@ -358,6 +371,43 @@
               </li>
             </ul>
           </article>
+
+          <!-- TrueDrive -->
+          <article role="tabpanel" id="panel-truedrive" aria-labelledby="tab-truedrive" tabindex="0" hidden class="glass rounded-3xl p-6 sm:p-10">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-glow/10"><i data-lucide="badge-pound-sterling" class="h-6 w-6 text-cyan-glow"></i></span>
+              <p class="text-sm font-medium text-ink-300">UK Automotive Marketplace (Buy &amp; Rent)</p>
+            </div>
+            <h3 class="mt-6 text-2xl font-extrabold leading-snug sm:text-3xl">Premium Zero-Trust Car Marketplace for Buying and Renting Across the UK</h3>
+            <p class="mt-4 max-w-2xl leading-relaxed text-ink-300">Clean-title cars only, with buyer funds held in escrow until the keys change hands. Private sellers list for free, dealers pay a flat monthly fee and no sale commission, and rental hosts keep 90.1% of every booking.</p>
+            <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
+                <i data-lucide="shield-check" class="h-5 w-5 text-cyan-glow"></i>
+                <p class="mt-3 font-bold">Clean Titles Only</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-300">Every registration is checked on listing. Stolen, written-off or financed vehicles are blocked automatically.</p>
+              </li>
+              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
+                <i data-lucide="qr-code" class="h-5 w-5 text-cyan-glow"></i>
+                <p class="mt-3 font-bold">Open Banking Escrow &amp; QR Handover</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-300">Funds stay locked until the buyer scans the seller's QR code at the physical handover.</p>
+              </li>
+              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
+                <i data-lucide="message-square-lock" class="h-5 w-5 text-cyan-glow"></i>
+                <p class="mt-3 font-bold">Protected In-App Messaging</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-300">Phone numbers and bank details are hidden automatically, so every deal stays inside the platform's protection.</p>
+              </li>
+              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
+                <i data-lucide="life-buoy" class="h-5 w-5 text-cyan-glow"></i>
+                <p class="mt-3 font-bold">Insured Test Drives &amp; Breakdown Cover</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-300">Short-term insurance for test drives and rentals that protects the owner's No Claims Bonus, with roadside assistance bundled into the fee.</p>
+              </li>
+            </ul>
+            <dl class="mt-6 grid gap-px overflow-hidden rounded-2xl border border-white/5 sm:grid-cols-3">
+              <div class="bg-midnight-950/40 px-5 py-4"><dt class="text-sm text-ink-400">Private buyers</dt><dd class="mt-1 font-bold text-ink-100">£49–£149 escrow fee</dd></div>
+              <div class="bg-midnight-950/40 px-5 py-4"><dt class="text-sm text-ink-400">Dealers</dt><dd class="mt-1 font-bold text-ink-100">£49 / £99 / £149 a month, 0% commission</dd></div>
+              <div class="bg-midnight-950/40 px-5 py-4"><dt class="text-sm text-ink-400">Rentals</dt><dd class="mt-1 font-bold text-ink-100">Flat 9.9% platform fee</dd></div>
+            </dl>
+          </article>
         </div>
       </div>
     </section>
@@ -397,7 +447,7 @@
             <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
               <dt class="flex items-center gap-2 font-semibold"><i data-lucide="code-xml" class="h-5 w-5 text-cyan-glow"></i>Languages &amp; frameworks</dt>
               <dd class="flex flex-wrap gap-2">
-                <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">TanStack Start</span><span class="chip">TanStack Router</span><span class="chip">TanStack Query</span><span class="chip">Vite</span><span class="chip">Tailwind CSS</span>
+                <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">TanStack Start</span><span class="chip">TanStack Router</span><span class="chip">TanStack Query</span><span class="chip">Next.js</span><span class="chip">Vite</span><span class="chip">Tailwind CSS</span>
               </dd>
             </div>
             <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
@@ -409,7 +459,7 @@
             <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
               <dt class="flex items-center gap-2 font-semibold"><i data-lucide="badge-check" class="h-5 w-5 text-[#3D7BFF]"></i>Identity &amp; payments</dt>
               <dd class="flex flex-wrap gap-2">
-                <span class="chip">Shufti Pro</span><span class="chip">NADRA verification</span><span class="chip">SafePay</span><span class="chip">Stripe</span><span class="chip">TPL Trakker</span>
+                <span class="chip">Shufti Pro</span><span class="chip">NADRA verification</span><span class="chip">SafePay</span><span class="chip">Stripe</span><span class="chip">TrueLayer</span><span class="chip">GoCardless</span><span class="chip">TPL Trakker</span>
               </dd>
             </div>
             <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
