@@ -1,562 +1,570 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raqium Tech | Technology Venture Studio</title>
   <meta name="description" content="Raqium is an online technology venture studio architecting intelligent platforms across mobility, automated scheduling, and real-time API middleware." />
+  <meta name="theme-color" content="#E3DFD6" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            midnight: { 950: '#070D18', 900: '#0B132B', 800: '#121C38', 700: '#1B2748' },
-            cyan: { glow: '#00F2FE' },
-            teal: { bright: '#00C9A7' },
-            royal: '#0052D4',
-            ink: { 100: '#E8EEF8', 300: '#A9B6CE', 400: '#8193B2' }
-          },
-          maxWidth: { page: '72rem' }
-        }
-      }
-    };
-  </script>
-  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Cormorant+Garamond:ital,wght@0,400..600;1,400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    body { background: #070D18; color: #E8EEF8; }
-    .grid-bg {
-      background-image:
-        linear-gradient(rgba(0, 242, 254, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 242, 254, 0.045) 1px, transparent 1px);
-      background-size: 56px 56px;
+    :root {
+      --concrete: #E3DFD6;
+      --concrete-2: #D9D4C9;
+      --charcoal: #222220;
+      --charcoal-2: #2B2B28;
+      --ink: #1B1B19;
+      --paper: #E8E4DB;
+      --slate: #55625F;          /* oxidized slate, on concrete */
+      --slate-d: #93A7A1;        /* oxidized slate, on charcoal */
+      --brass: #85652B;          /* raw brass, on concrete */
+      --brass-d: #CBAB6C;        /* raw brass, on charcoal */
+      --line-l: rgba(27, 27, 25, .3);
+      --line-d: rgba(232, 228, 219, .3);
+      --sans: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --serif: "Cormorant Garamond", Garamond, "Times New Roman", serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --pad: clamp(1.25rem, 4vw, 3rem);
+      --head-h: 3.5rem;
     }
-    .grid-fade { mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
-                 -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%); }
-    .glass {
-      background: linear-gradient(160deg, rgba(27, 39, 72, 0.55), rgba(11, 19, 43, 0.45));
-      border: 1px solid rgba(0, 242, 254, 0.12);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .grad-text {
-      background: linear-gradient(100deg, #00F2FE 0%, #00C9A7 45%, #3D7BFF 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .btn-grad { background: linear-gradient(100deg, #00F2FE, #00C9A7 50%, #0052D4); color: #04101C; }
-    .btn-grad:hover { filter: brightness(1.08); }
-    .glow { box-shadow: 0 0 0 1px rgba(0, 242, 254, 0.25), 0 10px 40px -10px rgba(0, 242, 254, 0.45); }
-    :focus-visible { outline: 2px solid #00F2FE; outline-offset: 3px; border-radius: 6px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--head-h); -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--concrete); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    ::selection { background: var(--brass-d); color: var(--ink); }
 
-    /* Hero network: one orchestrated draw-in on load */
-    .net-line { stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 1.6s cubic-bezier(.6,.1,.2,1) forwards; }
-    .net-node { opacity: 0; animation: pop .5s ease-out forwards; }
-    .net-pulse { animation: pulse 3.2s ease-in-out 2.2s infinite; transform-origin: center; transform-box: fill-box; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-    @keyframes pop { to { opacity: 1; } }
-    @keyframes pulse { 0%,100% { opacity: .35; transform: scale(1); } 50% { opacity: .9; transform: scale(1.35); } }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .net-line { animation: none; stroke-dashoffset: 0; }
-      .net-node { animation: none; opacity: 1; }
-      .net-pulse { animation: none; }
+    .frame { max-width: 1400px; margin: 0 auto; border-left: 1px solid var(--line-l); border-right: 1px solid var(--line-l); }
+    .dark { background: var(--charcoal); color: var(--paper); }
+    .dark .frame { border-color: var(--line-d); }
+    .inner { padding-left: var(--pad); padding-right: var(--pad); }
+
+    .mono { font-family: var(--mono); font-weight: 400; }
+    .serif { font-family: var(--serif); font-weight: 500; }
+    .muted { color: var(--slate); }
+    .dark .muted { color: var(--slate-d); }
+
+    /* Header: bare links on a hairline */
+    .site-head { position: sticky; top: 0; z-index: 20; background: var(--concrete); border-bottom: 1px solid var(--ink); }
+    .site-head .frame { display: flex; align-items: center; gap: 2.25rem; min-height: var(--head-h); padding: 0 var(--pad); flex-wrap: wrap; }
+    .wordmark { font-weight: 800; font-stretch: 112%; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; margin-right: 1rem; }
+    .nav { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; font-size: .9rem; font-weight: 600; }
+    .nav a { text-decoration: none; padding: .25rem 0; border-bottom: 1px solid transparent; }
+    .nav a:hover { border-bottom-color: currentColor; }
+    .menu-btn { display: none; margin-left: auto; background: none; border: 0; font: inherit; font-weight: 700; font-size: .9rem; color: inherit; padding: .5rem 0; cursor: pointer; }
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+      .nav { display: none; width: 100%; flex-direction: column; gap: 0; padding-bottom: .75rem; }
+      .nav.open { display: flex; }
+      .nav a { display: block; padding: .8rem 0; border-top: 1px solid var(--line-l); font-size: 1rem; }
+      .site-head .frame { gap: 0; }
     }
 
-    .chip { display: inline-block; border: 1px solid rgba(0, 242, 254, 0.18); background: rgba(11, 19, 43, 0.6);
-            color: #E8EEF8; border-radius: 9999px; padding: .35rem .85rem; font-size: .875rem; font-weight: 500; }
-    [role="tabpanel"][hidden] { display: none; }
-    .tab[aria-selected="true"] { background: rgba(0, 242, 254, 0.08); border-color: rgba(0, 242, 254, 0.45); }
-    .tab[aria-selected="true"] .tab-name { color: #00F2FE; }
+    /* Hero */
+    .hero .frame { position: relative; padding: clamp(3.5rem, 9vw, 8rem) var(--pad) 0; }
+    .hero-cols { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); pointer-events: none; }
+    .hero-cols span { border-left: 1px solid var(--line-l); }
+    .hero-cols span:first-child { border-left: 0; }
+    .nb { white-space: nowrap; }
+    .hero h1 { position: relative; margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(2.7rem, 8.2vw, 8rem); line-height: .96; letter-spacing: -0.022em; max-width: 14.5em; text-wrap: balance; }
+    .hero-sub { position: relative; margin: clamp(1.75rem, 4vw, 3rem) 0 0; max-width: 34rem; font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.5; }
+    .hero-actions { position: relative; display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; margin-top: 2.25rem; }
+    .btn { display: inline-block; background: var(--ink); color: var(--concrete); padding: .95rem 1.5rem; font-weight: 700; font-size: .95rem; text-decoration: none; border: 1px solid var(--ink); }
+    .btn:hover { background: transparent; color: var(--ink); }
+    .link-u { font-weight: 700; font-size: .95rem; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: .15rem; }
+    .link-u:hover { color: var(--brass); }
+    .dark .link-u:hover { color: var(--brass-d); }
+    .hero-data { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); margin: clamp(3.5rem, 8vw, 7rem) calc(var(--pad) * -1) 0; border-top: 1px solid var(--ink); }
+    .hero-data > div { padding: 1.5rem var(--pad) 1.75rem; border-left: 1px solid transparent; }
+    .hero-data > div:first-child { border-left: 0; }
+    @media (max-width: 720px) { .hero-cols { display: none; } .hero-data b { font-size: 1.7rem; white-space: nowrap; } }
+    .hero-data b { display: block; font-weight: 800; font-stretch: 112%; font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1; letter-spacing: -0.02em; }
+    .hero-data span { display: block; margin-top: .6rem; font-size: .9rem; max-width: 16rem; }
+    @media (max-width: 720px) {
+      .hero-data { grid-template-columns: 1fr; }
+      .hero-data > div { border-left: 0; border-top: 1px solid var(--line-l); display: flex; align-items: baseline; gap: 1rem; }
+      .hero-data > div:first-child { border-top: 0; }
+      .hero-data span { margin-top: 0; }
+    }
+
+    /* Section scaffolding */
+    section { border-top: 1px solid var(--ink); }
+    .dark section, section.dark { border-top-color: var(--paper); }
+    .sec-pad { padding-top: clamp(3.5rem, 8vw, 7rem); padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+    .split { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+    .h-serif { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4.6vw, 4rem); line-height: 1.02; letter-spacing: -0.015em; text-wrap: balance; }
+    .h-sans { margin: 0; font-weight: 800; font-stretch: 112%; font-size: clamp(1.4rem, 2.4vw, 2rem); letter-spacing: -0.015em; line-height: 1.1; }
+    .lede { font-size: 1.1rem; line-height: 1.6; max-width: 34rem; margin: 0; }
+
+    /* Schematic */
+    .studio .intro .h-serif { grid-column: 1 / 8; }
+    .studio .intro .lede { grid-column: 9 / 13; align-self: end; }
+    @media (max-width: 860px) { .studio .intro .h-serif, .studio .intro .lede { grid-column: 1 / -1; } }
+    figure.plan { margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
+    .schematic { display: block; width: 100%; height: auto; color: var(--paper); overflow: visible; }
+    .schematic .sans { font-family: var(--sans); font-weight: 700; fill: currentColor; }
+    .schematic .mono { font-family: var(--mono); fill: currentColor; }
+    .schematic .plate { paint-order: stroke; stroke: var(--charcoal); stroke-width: 6px; stroke-linejoin: round; }
+    .schematic-phone { display: none; }
+    @media (max-width: 760px) { .schematic-desktop { display: none; } .schematic-phone { display: block; max-width: 460px; margin: 0 auto; } }
+    .schematic .ln { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .schematic.armed .ln { stroke-dashoffset: 1; }
+    .schematic.armed .node { opacity: 0; }
+    .schematic.armed.drawn .ln { stroke-dashoffset: 0; transition: stroke-dashoffset 1.3s cubic-bezier(.55, 0, .2, 1) var(--d, 0s); }
+    .schematic.armed.drawn .node { opacity: 1; transition: opacity .4s ease var(--d, 0s); }
+    @media (prefers-reduced-motion: reduce) { .schematic.armed .ln { stroke-dashoffset: 0 !important; transition: none !important; } .schematic.armed .node { opacity: 1 !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; vertical-align: top; font-weight: 400; }
+    .legend { margin-top: clamp(2rem, 4vw, 3rem); font-family: var(--mono); font-size: .8125rem; line-height: 1.55; }
+    .legend caption, .spec caption, .grid-table caption { text-align: left; font-family: var(--mono); font-size: .8125rem; padding-bottom: .75rem; }
+    .legend th, .legend td { padding: .9rem 1rem .9rem 0; border-top: 1px solid var(--line-d); }
+    .legend tr:last-child th, .legend tr:last-child td { border-bottom: 1px solid var(--line-d); }
+    .legend th { width: 24%; font-weight: 500; color: var(--paper); }
+    .legend td:nth-child(2) { width: 42%; }
+    .legend td:last-child { color: var(--brass-d); }
+    @media (max-width: 720px) {
+      .legend tr, .grid-table tr { display: block; padding: .9rem 0; border-top: 1px solid var(--line-d); }
+      .legend th, .legend td, .grid-table th, .grid-table td { display: block; width: auto !important; border: 0 !important; padding: .15rem 0 !important; }
+      .legend thead, .grid-table thead { position: absolute; left: -9999px; }
+    }
+
+    /* Products */
+    .portfolio .intro { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+    .portfolio .intro .h-sans { grid-column: 1 / 4; }
+    .portfolio .intro .h-serif { grid-column: 5 / 13; }
+    @media (max-width: 860px) { .portfolio .intro .h-sans, .portfolio .intro .h-serif { grid-column: 1 / -1; } }
+    .product { border-top: 1px solid var(--ink); padding: clamp(2.5rem, 6vw, 5.5rem) 0 clamp(3rem, 7vw, 6.5rem); }
+    .product .split { align-items: start; row-gap: 2rem; }
+    .p-head { grid-column: 1 / 5; }
+    .p-body { grid-column: 5 / 13; }
+    .product.flip .p-head { grid-column: 9 / 13; grid-row: 1; }
+    .product.flip .p-body { grid-column: 1 / 9; grid-row: 1; }
+    .p-name { margin: 0; font-weight: 800; font-stretch: 118%; font-size: clamp(2.4rem, 5.2vw, 4.6rem); line-height: .95; letter-spacing: -0.03em; }
+    .p-cat { margin: 1rem 0 0; font-family: var(--mono); font-size: .8125rem; line-height: 1.5; color: var(--slate); max-width: 20rem; }
+    .p-purpose { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(1.7rem, 3.2vw, 2.75rem); line-height: 1.08; letter-spacing: -0.012em; text-wrap: balance; }
+    .p-value { margin: 1.25rem 0 0; max-width: 38rem; font-size: 1.05rem; }
+    .spec { margin-top: clamp(2rem, 4vw, 3rem); font-family: var(--mono); font-size: .8125rem; line-height: 1.55; }
+    .spec caption { color: var(--slate); }
+    .spec th, .spec td { padding: .8rem 1rem .8rem 0; border-top: 1px solid var(--line-l); }
+    .spec tr:last-child th, .spec tr:last-child td { border-bottom: 1px solid var(--line-l); }
+    .spec th { width: 9.5rem; font-weight: 500; color: var(--slate); }
+    @media (max-width: 860px) {
+      .p-head, .p-body, .product.flip .p-head, .product.flip .p-body { grid-column: 1 / -1; grid-row: auto; }
+      .spec th { width: 7.5rem; }
+    }
+    @media (max-width: 520px) {
+      .spec tr { display: block; padding: .8rem 0; border-top: 1px solid var(--line-l); }
+      .spec th, .spec td { display: block; width: auto; border: 0 !important; padding: .1rem 0; }
+      .spec tr:last-child { border-bottom: 1px solid var(--line-l); }
+    }
+
+    /* Core technology */
+    .tech .intro .h-serif { grid-column: 1 / 9; }
+    @media (max-width: 860px) { .tech .intro .h-serif { grid-column: 1 / -1; } }
+    .grid-table { margin-top: clamp(2.5rem, 5vw, 4rem); font-size: .95rem; }
+    .grid-table th, .grid-table td { padding: 1.3rem 1.25rem 1.3rem 0; border-top: 1px solid var(--line-d); }
+    .grid-table tr:last-child th, .grid-table tr:last-child td { border-bottom: 1px solid var(--line-d); }
+    .grid-table thead th { font-family: var(--mono); font-size: .8125rem; color: var(--slate-d); padding: .6rem 1.25rem .6rem 0; border-top: 0; }
+    .grid-table tbody th { width: 28%; font-weight: 800; font-stretch: 110%; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.01em; }
+    .grid-table td:nth-child(2) { width: 40%; }
+    .grid-table td.m { font-family: var(--mono); font-size: .8125rem; color: var(--brass-d); }
+    .stack { margin-top: clamp(3rem, 6vw, 5rem); }
+    .stack .h-sans { margin-bottom: 1.25rem; }
+    .stack td.m { color: var(--paper); }
+    .stack tbody th { font-size: 1rem; font-weight: 700; color: var(--paper); }
+    .stack td:nth-child(2) { width: auto; }
+    @media (max-width: 720px) { .grid-table td.m { margin-top: .35rem; } }
+
+    /* Leadership */
+    .lead .split { row-gap: 2.5rem; }
+    .lead .l-head { grid-column: 1 / 6; }
+    .lead .l-body { grid-column: 6 / 13; }
+    .lead .big { display: block; margin-top: 2.5rem; font-weight: 800; font-stretch: 118%; font-size: clamp(4.5rem, 11vw, 9.5rem); line-height: .85; letter-spacing: -0.04em; }
+    .lead .big-cap { display: block; margin-top: .75rem; font-family: var(--mono); font-size: .8125rem; color: var(--slate); }
+    .l-body .serif { margin: 0; font-size: clamp(1.6rem, 2.9vw, 2.5rem); line-height: 1.14; letter-spacing: -0.01em; }
+    .l-body p.s { margin: 1.75rem 0 0; max-width: 34rem; }
+    @media (max-width: 860px) { .lead .l-head, .lead .l-body { grid-column: 1 / -1; } }
+
+    /* Contact */
+    .contact .h-serif { font-size: clamp(2.6rem, 8vw, 7rem); line-height: .96; max-width: 12em; }
+    .contact .sub { margin: 1.75rem 0 0; max-width: 32rem; font-size: 1.1rem; }
+    .mail { display: inline-block; margin-top: 2.25rem; font-family: var(--mono); font-size: clamp(1rem, 2.6vw, 1.6rem); color: var(--brass-d); text-decoration: none; border-bottom: 1px solid var(--brass-d); padding-bottom: .3rem; word-break: break-all; }
+    .mail:hover { color: var(--paper); border-bottom-color: var(--paper); }
+    .loc { margin: 1.5rem 0 0; font-family: var(--mono); font-size: .8125rem; color: var(--slate-d); }
+    .foot { border-top: 1px solid var(--line-d); }
+    .foot .frame { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; padding: 1.4rem var(--pad); font-family: var(--mono); font-size: .8125rem; color: var(--slate-d); }
+    .foot ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
+    .foot a { text-decoration: none; }
+    .foot a:hover { color: var(--paper); text-decoration: underline; }
   </style>
 </head>
-<body class="font-sans antialiased selection:bg-cyan-glow/30">
+<body>
 
-  <!-- Header -->
-  <header class="fixed inset-x-0 top-0 z-50">
-    <div class="glass border-x-0 border-t-0 !border-b-[rgba(0,242,254,0.1)]">
-      <nav class="mx-auto flex max-w-page items-center justify-between px-4 py-3 sm:px-6" aria-label="Main">
-        <a href="#top" class="flex items-center gap-2.5" aria-label="Raqium home">
-          <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
-            <defs>
-              <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#00F2FE" /><stop offset="1" stop-color="#0052D4" />
-              </linearGradient>
-            </defs>
-            <path d="M11 33 V8 H22 a7.5 7.5 0 0 1 0 15 H11 M20 23 L30 33" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="11" cy="8" r="3" fill="#00F2FE" />
-            <circle cx="11" cy="33" r="3" fill="#00C9A7" />
-            <circle cx="29.5" cy="15.5" r="3" fill="#00F2FE" />
-            <circle cx="11" cy="23" r="2.4" fill="#0B132B" stroke="#00F2FE" stroke-width="1.6" />
-            <circle cx="30" cy="33" r="3" fill="#0052D4" />
-          </svg>
-          <span class="text-lg font-extrabold tracking-[0.18em] text-ink-100">RAQIUM</span>
-        </a>
-
-        <ul class="hidden items-center gap-7 text-sm font-medium text-ink-300 lg:flex">
-          <li><a class="transition-colors hover:text-cyan-glow" href="#studio">Venture Studio</a></li>
-          <li><a class="transition-colors hover:text-cyan-glow" href="#portfolio">Portfolio</a></li>
-          <li><a class="transition-colors hover:text-cyan-glow" href="#technology">Core Technology</a></li>
-          <li><a class="transition-colors hover:text-cyan-glow" href="#leadership">Leadership</a></li>
-          <li><a class="transition-colors hover:text-cyan-glow" href="#contact">Contact</a></li>
-        </ul>
-
-        <div class="flex items-center gap-2">
-          <a href="#contact" class="btn-grad hidden rounded-full px-5 py-2 text-sm font-bold sm:inline-block">Contact Us</a>
-          <button id="menuBtn" class="rounded-lg p-2 text-ink-100 lg:hidden" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
-            <i data-lucide="menu" class="h-6 w-6" id="menuIcon"></i>
-          </button>
-        </div>
-      </nav>
-
-      <div id="mobileMenu" class="hidden border-t border-white/5 lg:hidden">
-        <ul class="mx-auto flex max-w-page flex-col px-4 py-3 text-base font-medium text-ink-100 sm:px-6">
-          <li><a class="block rounded-lg px-2 py-3 hover:bg-white/5" href="#studio">Venture Studio</a></li>
-          <li><a class="block rounded-lg px-2 py-3 hover:bg-white/5" href="#portfolio">Portfolio</a></li>
-          <li><a class="block rounded-lg px-2 py-3 hover:bg-white/5" href="#technology">Core Technology</a></li>
-          <li><a class="block rounded-lg px-2 py-3 hover:bg-white/5" href="#leadership">Leadership</a></li>
-          <li><a class="block rounded-lg px-2 py-3 hover:bg-white/5" href="#contact">Contact</a></li>
-          <li class="pt-2"><a class="btn-grad block rounded-full px-5 py-3 text-center font-bold" href="#contact">Contact Us</a></li>
-        </ul>
-      </div>
+  <header class="site-head">
+    <div class="frame">
+      <a class="wordmark" href="#top" aria-label="Raqium home">Raqium</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+      <ul class="nav" id="nav">
+        <li><a href="#studio">Venture Studio</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#technology">Core Technology</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </header>
 
   <main id="top">
     <!-- Hero -->
-    <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 lg:pb-24">
-      <div class="grid-bg grid-fade pointer-events-none absolute inset-0" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-royal/25 blur-[120px]" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute right-[-10rem] top-40 h-80 w-80 rounded-full bg-cyan-glow/10 blur-[100px]" aria-hidden="true"></div>
-
-      <div class="relative mx-auto grid max-w-page items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr]">
-        <div>
-          <h1 class="text-[2.35rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.6rem]">
-            <span class="grad-text">Building High-Efficiency Software &amp; Zero-Trust Marketplaces</span>
-          </h1>
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-300">
-            Raqium is an online technology venture studio architecting intelligent platforms across mobility, automated scheduling, and real-time API middleware.
-          </p>
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#portfolio" class="btn-grad glow rounded-full px-7 py-3.5 text-center font-bold">Explore Our Portfolio</a>
-            <a href="#contact" class="rounded-full border border-cyan-glow/40 px-7 py-3.5 text-center font-semibold text-ink-100 transition-colors hover:border-cyan-glow hover:bg-cyan-glow/5">Get in Touch</a>
-          </div>
+    <section class="hero" style="border-top:0">
+      <div class="frame">
+        <div class="hero-cols" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>Building <span class="nb">High-Efficiency</span> Software &amp; <span class="nb">Zero-Trust</span> Marketplaces</h1>
+        <p class="hero-sub">Raqium is an online technology venture studio architecting intelligent platforms across mobility, automated scheduling, and real-time API middleware.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#portfolio">Explore Our Portfolio</a>
+          <a class="link-u" href="#contact">Get in Touch</a>
         </div>
-
-        <!-- Network motif: the studio hub linking its three products -->
-        <figure class="relative mx-auto w-full max-w-md lg:max-w-none" aria-label="Raqium connecting RentKar, DriveSync, SyncBite and TrueDrive">
-          <svg viewBox="0 0 420 380" class="w-full" role="img" aria-hidden="true">
-            <defs>
-              <linearGradient id="ln" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#00F2FE" /><stop offset="1" stop-color="#0052D4" />
-              </linearGradient>
-              <radialGradient id="hubGlow">
-                <stop offset="0" stop-color="#00F2FE" stop-opacity=".45" /><stop offset="1" stop-color="#00F2FE" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-            <!-- satellite links -->
-            <g stroke="rgba(0,242,254,.18)" stroke-width="1" fill="none">
-              <path class="net-line" style="animation-delay:.9s" d="M80 80 L40 30" />
-              <path class="net-line" style="animation-delay:.9s" d="M80 80 L20 120" />
-              <path class="net-line" style="animation-delay:1s" d="M345 95 L400 50" />
-              <path class="net-line" style="animation-delay:1s" d="M345 95 L405 150" />
-              <path class="net-line" style="animation-delay:1.1s" d="M200 320 L130 360" />
-              <path class="net-line" style="animation-delay:1.1s" d="M200 320 L280 362" />
-              <path class="net-line" style="animation-delay:1.2s" d="M352 270 L405 235" />
-              <path class="net-line" style="animation-delay:1.2s" d="M352 270 L398 328" />
-              <path class="net-line" style="animation-delay:1.2s" d="M80 80 L345 95" stroke-dasharray="4 6" />
-            </g>
-            <!-- main links -->
-            <g stroke="url(#ln)" stroke-width="1.8" fill="none" stroke-linecap="round">
-              <path class="net-line" style="animation-delay:.2s" d="M210 190 L80 80" />
-              <path class="net-line" style="animation-delay:.35s" d="M210 190 L345 95" />
-              <path class="net-line" style="animation-delay:.5s" d="M210 190 L200 320" />
-              <path class="net-line" style="animation-delay:.65s" d="M210 190 L352 270" />
-            </g>
-            <!-- satellite nodes -->
-            <g fill="#0B132B" stroke="rgba(0,242,254,.5)" stroke-width="1.2">
-              <circle class="net-node" style="animation-delay:1.5s" cx="40" cy="30" r="4" />
-              <circle class="net-node" style="animation-delay:1.5s" cx="20" cy="120" r="4" />
-              <circle class="net-node" style="animation-delay:1.6s" cx="400" cy="50" r="4" />
-              <circle class="net-node" style="animation-delay:1.6s" cx="405" cy="150" r="4" />
-              <circle class="net-node" style="animation-delay:1.7s" cx="130" cy="360" r="4" />
-              <circle class="net-node" style="animation-delay:1.7s" cx="280" cy="362" r="4" />
-              <circle class="net-node" style="animation-delay:1.8s" cx="405" cy="235" r="4" />
-              <circle class="net-node" style="animation-delay:1.8s" cx="398" cy="328" r="4" />
-            </g>
-            <!-- hub -->
-            <circle cx="210" cy="190" r="80" fill="url(#hubGlow)" class="net-pulse" />
-            <g class="net-node" style="animation-delay:0s">
-              <circle cx="210" cy="190" r="34" fill="#0B132B" stroke="url(#ln)" stroke-width="2" />
-              <text x="210" y="198" text-anchor="middle" font-size="24" font-weight="800" fill="#00F2FE" font-family="Plus Jakarta Sans, sans-serif">R</text>
-            </g>
-            <!-- product nodes -->
-            <g font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="700" fill="#E8EEF8">
-              <g class="net-node" style="animation-delay:1.2s">
-                <circle cx="80" cy="80" r="9" fill="#00F2FE" />
-                <text x="80" y="58" text-anchor="middle">RentKar</text>
-              </g>
-              <g class="net-node" style="animation-delay:1.35s">
-                <circle cx="345" cy="95" r="9" fill="#00C9A7" />
-                <text x="345" y="73" text-anchor="middle">DriveSync</text>
-              </g>
-              <g class="net-node" style="animation-delay:1.5s">
-                <circle cx="200" cy="320" r="9" fill="#3D7BFF" />
-                <text x="232" y="325" text-anchor="start">SyncBite</text>
-              </g>
-              <g class="net-node" style="animation-delay:1.65s">
-                <circle cx="352" cy="270" r="9" fill="#00F2FE" />
-                <text x="352" y="296" text-anchor="middle" dy="14">TrueDrive</text>
-              </g>
-            </g>
-          </svg>
-        </figure>
-      </div>
-
-      <!-- Metrics bar -->
-      <div class="relative mx-auto mt-14 max-w-page px-4 sm:px-6">
-        <dl class="glass grid gap-px overflow-hidden rounded-2xl sm:grid-cols-3">
-          <div class="flex items-center gap-4 px-6 py-5">
-            <dt class="sr-only">Experience</dt>
-            <dd class="text-3xl font-extrabold text-cyan-glow">25+</dd>
-            <dd class="text-sm leading-snug text-ink-300">Years Enterprise<br />Tech Leadership</dd>
-          </div>
-          <div class="flex items-center gap-4 border-t border-white/5 px-6 py-5 sm:border-l sm:border-t-0">
-            <dt class="sr-only">Products</dt>
-            <dd class="text-3xl font-extrabold text-teal-bright">4</dd>
-            <dd class="text-sm leading-snug text-ink-300">Core Products<br />In Development</dd>
-          </div>
-          <div class="flex items-center gap-4 border-t border-white/5 px-6 py-5 sm:border-l sm:border-t-0">
-            <dt class="sr-only">Security</dt>
-            <dd><i data-lucide="shield-check" class="h-8 w-8 text-[#3D7BFF]"></i></dd>
-            <dd class="text-sm leading-snug text-ink-300">Zero-Trust<br />Security Architecture</dd>
-          </div>
-        </dl>
+        <div class="hero-data">
+          <div><b>25+</b><span>Years of enterprise technology leadership</span></div>
+          <div><b>4</b><span>Core products in development</span></div>
+          <div><b>Zero-trust</b><span>Security architecture throughout</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- Studio thesis -->
-    <section id="studio" class="scroll-mt-20 border-t border-white/5 bg-midnight-900/60 py-20 sm:py-24">
-      <div class="mx-auto grid max-w-page gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
-        <h2 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-          Engineering Solutions for Complex Operational Deficits
-        </h2>
-        <div class="space-y-6">
-          <p class="text-lg leading-relaxed text-ink-300">
-            At Raqium, we build digital platforms that eliminate operational friction, automate high-value scheduling, and solve the trust deficit across fragmented markets. By combining enterprise-grade quality engineering with edge-computing architectures, we deliver high-margin, scalable software solutions.
-          </p>
-          <ul class="grid gap-3 sm:grid-cols-3">
-            <li class="flex items-center gap-2 text-sm font-semibold text-ink-100"><i data-lucide="zap" class="h-4 w-4 text-cyan-glow"></i>Less friction</li>
-            <li class="flex items-center gap-2 text-sm font-semibold text-ink-100"><i data-lucide="calendar-clock" class="h-4 w-4 text-teal-bright"></i>Automated scheduling</li>
-            <li class="flex items-center gap-2 text-sm font-semibold text-ink-100"><i data-lucide="handshake" class="h-4 w-4 text-[#3D7BFF]"></i>Built-in trust</li>
-          </ul>
+    <!-- Studio thesis + schematic -->
+    <section class="studio dark" id="studio">
+      <div class="frame inner sec-pad">
+        <div class="split intro">
+          <h2 class="h-serif">Engineering solutions for complex operational deficits</h2>
+          <p class="lede">At Raqium, we build digital platforms that eliminate operational friction, automate high-value scheduling, and solve the trust deficit across fragmented markets. By combining enterprise-grade quality engineering with edge-computing architectures, we deliver high-margin, scalable software solutions.</p>
         </div>
+        <figure class="plan">
+          <svg class="schematic schematic-desktop" viewBox="0 0 1200 604" role="img" aria-labelledby="sd-t" xmlns="http://www.w3.org/2000/svg">
+<title id="sd-t">Schematic: RentKar, DriveSync, SyncBite and TrueDrive anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
+<defs><pattern id="hatchD" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1" stroke-opacity=".38"/></pattern></defs>
+<rect x=".5" y=".5" width="1199" height="603" fill="none" stroke="currentColor" stroke-opacity=".5"/>
+<path d="M0 5H1200" stroke="currentColor" stroke-opacity=".4" stroke-width="8" stroke-dasharray="1 24" fill="none"/>
+<path d="M5 0V604" stroke="currentColor" stroke-opacity=".4" stroke-width="8" stroke-dasharray="1 24" fill="none"/>
+<g class="dim" stroke="currentColor" stroke-opacity=".7" fill="none"><path d="M250 40H1140M250 32V48M1140 32V48M246 44l8 -8M1136 44l8 -8"/></g>
+<text class="mono" x="695" y="28" text-anchor="middle" font-size="11.5">Raqium venture studio</text>
+<rect x="210" y="214" width="950" height="60" fill="url(#hatchD)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M198 244H210" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans" x="190" y="249" text-anchor="end" font-size="14.5">Identity verification</text>
+<rect x="210" y="304" width="950" height="60" fill="url(#hatchD)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M198 334H210" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans" x="190" y="339" text-anchor="end" font-size="14.5">Payments and escrow</text>
+<rect x="210" y="394" width="950" height="60" fill="url(#hatchD)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M198 424H210" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans" x="190" y="429" text-anchor="end" font-size="14.5">Data and API routing</text>
+<rect x="210" y="486" width="950" height="16" fill="url(#hatchD)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M210 486H1160" stroke="currentColor" stroke-width="2.2"/>
+<path d="M198 494H210" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans" x="190" y="499" text-anchor="end" font-size="14.5">Zero-trust security</text>
+<rect x="250" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="266" y="100" font-size="21">RentKar</text>
+<text class="mono" x="266" y="120" font-size="10.5" fill-opacity=".8">Mobility · Islamabad–AJK</text>
+<path class="ln" pathLength="1" style="--d:0.00s" d="M330 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:0.90s" cx="330" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.12s" d="M350 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.02s" cx="350" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.24s" d="M370 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.14s" cx="370" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.66s" d="M350 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="480" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="496" y="100" font-size="21">DriveSync</text>
+<text class="mono" x="496" y="120" font-size="10.5" fill-opacity=".8">Scheduling · UK ADIs</text>
+<path class="ln" pathLength="1" style="--d:0.36s" d="M580 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.26s" cx="580" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.48s" d="M600 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.38s" cx="600" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.90s" d="M580 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="710" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="726" y="100" font-size="21">SyncBite</text>
+<text class="mono" x="726" y="120" font-size="10.5" fill-opacity=".8">Middleware · EPOS</text>
+<path class="ln" pathLength="1" style="--d:0.60s" d="M830 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.50s" cx="830" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.02s" d="M810 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="940" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="956" y="100" font-size="21">TrueDrive</text>
+<text class="mono" x="956" y="120" font-size="10.5" fill-opacity=".8">Marketplace · UK</text>
+<path class="ln" pathLength="1" style="--d:0.72s" d="M1020 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.62s" cx="1020" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.84s" d="M1040 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.74s" cx="1040" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.96s" d="M1060 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.86s" cx="1060" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.38s" d="M1040 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<g stroke="currentColor" stroke-opacity=".6" fill="none"><rect x="950" y="522" width="240" height="56"/><path d="M950 542H1190"/></g>
+<text class="mono" x="962" y="536" font-size="10.5">Raqium Tech Ltd</text>
+<text class="mono" x="962" y="557" font-size="10.5" fill-opacity=".85">Platform schematic</text>
+<text class="mono" x="962" y="570" font-size="10.5" fill-opacity=".85">Ventures to foundations</text>
+<text class="mono" x="24" y="570" font-size="10.5" fill-opacity=".7">Schematic, not to scale</text>
+</svg>
+          <svg class="schematic schematic-phone" viewBox="0 0 360 470" role="img" aria-labelledby="sp-t" xmlns="http://www.w3.org/2000/svg">
+<title id="sp-t">Schematic: RentKar, DriveSync, SyncBite and TrueDrive anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
+<defs><pattern id="hatchP" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1" stroke-opacity=".38"/></pattern></defs>
+<rect x=".5" y=".5" width="359" height="469" fill="none" stroke="currentColor" stroke-opacity=".5"/>
+<g stroke="currentColor" stroke-opacity=".7" fill="none"><path d="M12 30H348M12 24V36M348 24V36M8 34l8 -8M344 34l8 -8"/></g>
+<text class="mono" x="180" y="20" text-anchor="middle" font-size="10.5">Raqium venture studio</text>
+<rect x="196" y="44" width="46" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(224.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Identity</text>
+<rect x="254" y="44" width="46" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(282.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Payments</text>
+<rect x="312" y="44" width="36" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(335.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Data and API</text>
+<rect x="12" y="54" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="79" font-size="16.5">RentKar</text>
+<text class="mono" x="24" y="97" font-size="10" fill-opacity=".8">Mobility</text>
+<path class="ln" pathLength="1" style="--d:0.00s" d="M152 68H196" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:0.90s" cx="196" cy="68" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.12s" d="M152 82H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.02s" cx="254" cy="82" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.24s" d="M152 96H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.14s" cx="312" cy="96" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="128" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="153" font-size="16.5">DriveSync</text>
+<text class="mono" x="24" y="171" font-size="10" fill-opacity=".8">Scheduling</text>
+<path class="ln" pathLength="1" style="--d:0.36s" d="M152 156H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.26s" cx="254" cy="156" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.48s" d="M152 170H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.38s" cx="312" cy="170" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="202" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="227" font-size="16.5">SyncBite</text>
+<text class="mono" x="24" y="245" font-size="10" fill-opacity=".8">Middleware</text>
+<path class="ln" pathLength="1" style="--d:0.60s" d="M152 244H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.50s" cx="312" cy="244" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="276" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="301" font-size="16.5">TrueDrive</text>
+<text class="mono" x="24" y="319" font-size="10" fill-opacity=".8">Marketplace</text>
+<path class="ln" pathLength="1" style="--d:0.72s" d="M152 290H196" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.62s" cx="196" cy="290" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.84s" d="M152 304H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.74s" cx="254" cy="304" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.96s" d="M152 318H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.86s" cx="312" cy="318" r="3.6" fill="var(--brass-d)"/>
+<path d="M219.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
+<path d="M277.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
+<path d="M330.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
+<rect x="12" y="372" width="336" height="14" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M12 372H348" stroke="currentColor" stroke-width="2.2"/>
+<text class="sans" x="12" y="408" font-size="13.5">Zero-trust security</text>
+<text class="mono" x="12" y="456" font-size="10" fill-opacity=".7">Schematic, not to scale</text>
+</svg>
+          <figcaption class="sr-only" style="position:absolute;left:-9999px">Four ventures connect into shared identity, payments and data layers resting on a zero-trust foundation.</figcaption>
+        </figure>
+        <table class="legend">
+          <caption>Foundation layers</caption>
+          <thead class="sr-only" style="position:absolute;left:-9999px"><tr><th>Layer</th><th>Function</th><th>Components</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Identity verification</th><td>Biometric and document checks before an asset changes hands.</td><td>Shufti Pro, NADRA, passports</td></tr>
+            <tr><th scope="row">Payments and escrow</th><td>Deposit holds, split payouts and dispute adjudication.</td><td>SafePay, Stripe, TrueLayer, GoCardless</td></tr>
+            <tr><th scope="row">Data and API routing</th><td>Offline-first caching, edge functions and live synchronization.</td><td>Supabase, PostgreSQL, SQLite, webhooks</td></tr>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request verified; nothing assumed.</td><td>Row-level security, escrow-first flows</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="relative scroll-mt-20 py-20 sm:py-28">
-      <div class="grid-bg grid-fade pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
-      <div class="relative mx-auto max-w-page px-4 sm:px-6">
-        <div class="max-w-2xl">
-          <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Our Products</h2>
-          <p class="mt-3 text-lg text-ink-300">Four platforms, each built to remove a costly point of friction in its market.</p>
+    <section class="portfolio" id="portfolio">
+      <div class="frame inner">
+        <div class="split intro sec-pad" style="padding-bottom:clamp(2.5rem,5vw,4rem)">
+          <h2 class="h-sans">Portfolio</h2>
+          <p class="h-serif">Four platforms, each built to remove a costly point of friction in its market.</p>
         </div>
 
-        <div class="mt-10 grid gap-6 lg:grid-cols-[17rem_1fr]">
-          <div role="tablist" aria-label="Products" aria-orientation="vertical" class="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
-            <button role="tab" id="tab-rentkar" aria-controls="panel-rentkar" aria-selected="true" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
-              <span class="tab-name block text-lg font-bold text-ink-100">RentKar</span>
-              <span class="mt-0.5 block text-xs text-ink-400">Mobility marketplace</span>
-            </button>
-            <button role="tab" id="tab-drivesync" aria-controls="panel-drivesync" aria-selected="false" tabindex="-1" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
-              <span class="tab-name block text-lg font-bold text-ink-100">DriveSync</span>
-              <span class="mt-0.5 block text-xs text-ink-400">UK ADI engine</span>
-            </button>
-            <button role="tab" id="tab-syncbite" aria-controls="panel-syncbite" aria-selected="false" tabindex="-1" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
-              <span class="tab-name block text-lg font-bold text-ink-100">SyncBite</span>
-              <span class="mt-0.5 block text-xs text-ink-400">Hospitality middleware</span>
-            </button>
-            <button role="tab" id="tab-truedrive" aria-controls="panel-truedrive" aria-selected="false" tabindex="-1" class="tab min-w-[12rem] shrink-0 rounded-xl border border-white/10 px-4 py-4 text-left transition-colors hover:bg-white/5 lg:min-w-0">
-              <span class="tab-name block text-lg font-bold text-ink-100">TrueDrive</span>
-              <span class="mt-0.5 block text-xs text-ink-400">UK car marketplace</span>
-            </button>
+        <article class="product">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">RentKar</h3>
+              <p class="p-cat">Cross-border mobility platform, Islamabad and AJK corridor</p>
+            </div>
+            <div class="p-body">
+              <p class="p-purpose">Premium zero-trust mobility and asset security marketplace.</p>
+              <p class="p-value">Eliminating the trust barrier in high-value vehicle rentals through NADRA-linked AI identity verification, automated digital escrow holds, and API-triggered GPS immobilization.</p>
+              <table class="spec">
+                <caption>Specification</caption>
+                <tbody>
+                  <tr><th scope="row">Identity</th><td>Shufti Pro AI KYC: biometric facial matching, CNIC and passport verification</td></tr>
+                  <tr><th scope="row">Escrow</th><td>SafePay digital escrow: automated security deposit authorization holds</td></tr>
+                  <tr><th scope="row">Telematics</th><td>TPL Trakker: real-time geofencing, remote asset protection</td></tr>
+                  <tr><th scope="row">Offline</th><td>SQLite local caching for low-signal mountain routes</td></tr>
+                  <tr><th scope="row">Stack</th><td>TypeScript, React, TanStack Start, Supabase</td></tr>
+                  <tr><th scope="row">Status</th><td>In development</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </article>
 
-          <!-- RentKar -->
-          <article role="tabpanel" id="panel-rentkar" aria-labelledby="tab-rentkar" tabindex="0" class="glass rounded-3xl p-6 sm:p-10">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-glow/10"><i data-lucide="car-front" class="h-6 w-6 text-cyan-glow"></i></span>
-              <p class="text-sm font-medium text-ink-300">Cross-Border Mobility Platform (Islamabad &amp; AJK Corridor)</p>
+        <article class="product flip">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">DriveSync</h3>
+              <p class="p-cat">B2B2C SaaS and route optimization, UK ADI engine</p>
             </div>
-            <h3 class="mt-6 text-2xl font-extrabold leading-snug sm:text-3xl">Premium Zero-Trust Mobility &amp; Asset Security Marketplace</h3>
-            <p class="mt-4 max-w-2xl leading-relaxed text-ink-300">Eliminating the trust barrier in high-value vehicle rentals through NADRA-linked AI identity verification, automated digital escrow holds, and API-triggered GPS immobilization.</p>
-            <ul class="mt-8 grid gap-4 sm:grid-cols-2">
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="scan-face" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Shufti Pro AI KYC</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Biometric facial matching and CNIC/passport verification.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="lock-keyhole" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">SafePay Digital Escrow</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Automated security deposit authorization holds.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="map-pinned" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">TPL Trakker Integration</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Real-time geofencing and remote asset protection.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="mountain" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Offline-First Handover</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">SQLite local caching for low-signal mountain routes.</p>
-              </li>
-            </ul>
-          </article>
+            <div class="p-body">
+              <p class="p-purpose">Intelligent scheduling and revenue protection for UK driving instructors.</p>
+              <p class="p-value">Replacing manual diaries with automated, postcode-aware route planning and hard-coded cancellation fee rules for UK Approved Driving Instructors.</p>
+              <table class="spec">
+                <caption>Specification</caption>
+                <tbody>
+                  <tr><th scope="row">Routing</th><td>Postcode travel matrix: exact travel time between lesson locations to optimize fuel and schedule gaps</td></tr>
+                  <tr><th scope="row">Scheduling</th><td>DVSA test-date auto-matching against local driving test availability</td></tr>
+                  <tr><th scope="row">Payments</th><td>Upfront escrow via Stripe: enforces cancellation rules, secures instructor earnings</td></tr>
+                  <tr><th scope="row">Status</th><td>In development</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
 
-          <!-- DriveSync -->
-          <article role="tabpanel" id="panel-drivesync" aria-labelledby="tab-drivesync" tabindex="0" hidden class="glass rounded-3xl p-6 sm:p-10">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-bright/10"><i data-lucide="route" class="h-6 w-6 text-teal-bright"></i></span>
-              <p class="text-sm font-medium text-ink-300">B2B2C SaaS &amp; Route Optimization</p>
+        <article class="product">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">SyncBite</h3>
+              <p class="p-cat">B2B micro-SaaS, hospitality middleware and EPOS bridge</p>
             </div>
-            <h3 class="mt-6 text-2xl font-extrabold leading-snug sm:text-3xl">Intelligent Scheduling &amp; Revenue Protection for Driving Instructors</h3>
-            <p class="mt-4 max-w-2xl leading-relaxed text-ink-300">Transforming how UK Approved Driving Instructors (ADIs) manage their diaries by replacing manual bookings with automated, postcode-aware route planning and hard-coded cancellation fee rules.</p>
-            <ul class="mt-8 grid gap-4 sm:grid-cols-3">
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="map" class="h-5 w-5 text-teal-bright"></i>
-                <p class="mt-3 font-bold">Postcode Travel Matrix</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Calculates exact travel time between lesson locations to optimize fuel and schedule gaps.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="calendar-check" class="h-5 w-5 text-teal-bright"></i>
-                <p class="mt-3 font-bold">DVSA Test-Date Auto-Matching</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Dynamically aligns pupil schedules with local driving test availability.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="wallet" class="h-5 w-5 text-teal-bright"></i>
-                <p class="mt-3 font-bold">Upfront Escrow &amp; Payment</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Enforces cancellation rules and secures instructor earnings automatically via Stripe.</p>
-              </li>
-            </ul>
-          </article>
+            <div class="p-body">
+              <p class="p-purpose">Cascade inventory sync and middleware for cafes and dessert parlours.</p>
+              <p class="p-value">A cloud-based API bridge connecting EPOS systems such as Square directly to Uber Eats, Just Eat and Deliveroo, preventing stockouts and cancelled-order penalties.</p>
+              <table class="spec">
+                <caption>Specification</caption>
+                <tbody>
+                  <tr><th scope="row">Inventory</th><td>Cascade ingredient-level syncing: pauses multi-item menu options the moment one ingredient runs out</td></tr>
+                  <tr><th scope="row">Modifiers</th><td>Complex modifier mapping: no dropped customization data between delivery apps and kitchen printers</td></tr>
+                  <tr><th scope="row">Throttling</th><td>Peak-rush auto-throttling extends preparation times in high-volume hours</td></tr>
+                  <tr><th scope="row">Integrations</th><td>Square EPOS; Uber Eats, Just Eat, Deliveroo</td></tr>
+                  <tr><th scope="row">Status</th><td>In development</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
 
-          <!-- SyncBite -->
-          <article role="tabpanel" id="panel-syncbite" aria-labelledby="tab-syncbite" tabindex="0" hidden class="glass rounded-3xl p-6 sm:p-10">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#3D7BFF]/10"><i data-lucide="utensils" class="h-6 w-6 text-[#3D7BFF]"></i></span>
-              <p class="text-sm font-medium text-ink-300">B2B Micro-SaaS / EPOS Bridge</p>
+        <article class="product flip">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">TrueDrive</h3>
+              <p class="p-cat">UK automotive marketplace, buy and rent</p>
             </div>
-            <h3 class="mt-6 text-2xl font-extrabold leading-snug sm:text-3xl">Cascade Inventory Sync &amp; Middleware for Cafes &amp; Dessert Parlours</h3>
-            <p class="mt-4 max-w-2xl leading-relaxed text-ink-300">A cloud-based API bridge connecting EPOS systems (like Square) directly to Uber Eats, Just Eat, and Deliveroo to prevent stockouts and eliminate cancelled order penalties.</p>
-            <ul class="mt-8 grid gap-4 sm:grid-cols-3">
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="layers" class="h-5 w-5 text-[#3D7BFF]"></i>
-                <p class="mt-3 font-bold">Cascade Ingredient-Level Syncing</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Automatically pauses multi-item menu options the moment a single underlying ingredient runs out on the till.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="git-merge" class="h-5 w-5 text-[#3D7BFF]"></i>
-                <p class="mt-3 font-bold">Complex Modifier Mapping</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Eliminates dropped order customization data between delivery apps and kitchen printers.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="gauge" class="h-5 w-5 text-[#3D7BFF]"></i>
-                <p class="mt-3 font-bold">Peak-Rush Auto-Throttling</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Dynamically extends preparation times during high-volume hours to protect kitchen operations.</p>
-              </li>
-            </ul>
-          </article>
-
-          <!-- TrueDrive -->
-          <article role="tabpanel" id="panel-truedrive" aria-labelledby="tab-truedrive" tabindex="0" hidden class="glass rounded-3xl p-6 sm:p-10">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-glow/10"><i data-lucide="badge-pound-sterling" class="h-6 w-6 text-cyan-glow"></i></span>
-              <p class="text-sm font-medium text-ink-300">UK Automotive Marketplace (Buy &amp; Rent)</p>
+            <div class="p-body">
+              <p class="p-purpose">Premium zero-trust car marketplace for buying and renting across the UK.</p>
+              <p class="p-value">Clean-title cars only, with buyer funds held in escrow until the keys change hands. Verified before listing. Protected until handover. Covered on the road.</p>
+              <table class="spec">
+                <caption>Specification</caption>
+                <tbody>
+                  <tr><th scope="row">Listing gate</th><td>Registration check blocks stolen, written-off and financed vehicles automatically</td></tr>
+                  <tr><th scope="row">Escrow</th><td>Open Banking escrow (TrueLayer): funds release when the buyer scans the seller's QR code at handover</td></tr>
+                  <tr><th scope="row">Messaging</th><td>Phone numbers and bank details masked in-app</td></tr>
+                  <tr><th scope="row">Cover</th><td>Short-term insurance for test drives and rentals; breakdown assistance bundled</td></tr>
+                  <tr><th scope="row">Billing</th><td>GoCardless subscriptions for dealers</td></tr>
+                  <tr><th scope="row">Stack</th><td>Next.js, React, Supabase</td></tr>
+                  <tr><th scope="row">Status</th><td>In development</td></tr>
+                </tbody>
+              </table>
             </div>
-            <h3 class="mt-6 text-2xl font-extrabold leading-snug sm:text-3xl">Premium Zero-Trust Car Marketplace for Buying and Renting Across the UK</h3>
-            <p class="mt-4 max-w-2xl leading-relaxed text-ink-300">Clean-title cars only, with buyer funds held in escrow until the keys change hands. A UK marketplace for buying and renting where trust is built into every step.</p>
-            <ul class="mt-8 grid gap-4 sm:grid-cols-2">
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="shield-check" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Clean Titles Only</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Every registration is checked on listing. Stolen, written-off or financed vehicles are blocked automatically.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="qr-code" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Open Banking Escrow &amp; QR Handover</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Funds stay locked until the buyer scans the seller's QR code at the physical handover.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="message-square-lock" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Protected In-App Messaging</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Phone numbers and bank details are hidden automatically, so every deal stays inside the platform's protection.</p>
-              </li>
-              <li class="rounded-2xl border border-white/5 bg-midnight-950/40 p-5">
-                <i data-lucide="life-buoy" class="h-5 w-5 text-cyan-glow"></i>
-                <p class="mt-3 font-bold">Insured Test Drives &amp; Breakdown Cover</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-300">Short-term insurance for test drives and rentals that protects the owner's No Claims Bonus, with roadside assistance bundled into the fee.</p>
-              </li>
-            </ul>
-            <div class="mt-6 rounded-2xl border border-cyan-glow/20 bg-cyan-glow/5 p-6">
-              <p class="text-xl font-extrabold leading-snug sm:text-2xl">Verified before listing. Protected until handover. Covered on the road.</p>
-              <p class="mt-2 leading-relaxed text-ink-300">TrueDrive builds all three into every deal, so nobody has to take a stranger's word for it.</p>
-            </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- Core technology -->
-    <section id="technology" class="scroll-mt-20 border-y border-white/5 bg-midnight-900/60 py-20 sm:py-28">
-      <div class="mx-auto max-w-page px-4 sm:px-6">
-        <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">Enterprise-Grade Infrastructure Built for Scale</h2>
-        <div class="mt-12 grid gap-5 sm:grid-cols-2">
-          <div class="glass rounded-2xl p-7">
-            <i data-lucide="cloud-off" class="h-7 w-7 text-cyan-glow"></i>
-            <h3 class="mt-5 text-xl font-bold">Edge Computing &amp; Offline-First Data</h3>
-            <p class="mt-2 leading-relaxed text-ink-300">Local SQLite caching paired with edge functions ensuring high availability across unstable networks.</p>
-          </div>
-          <div class="glass rounded-2xl p-7">
-            <i data-lucide="fingerprint" class="h-7 w-7 text-teal-bright"></i>
-            <h3 class="mt-5 text-xl font-bold">Biometric &amp; Identity APIs</h3>
-            <p class="mt-2 leading-relaxed text-ink-300">Deep integration with AI verification providers and official identity databases (NADRA / Passports).</p>
-          </div>
-          <div class="glass rounded-2xl p-7">
-            <i data-lucide="landmark" class="h-7 w-7 text-[#3D7BFF]"></i>
-            <h3 class="mt-5 text-xl font-bold">Automated Escrow &amp; Payments</h3>
-            <p class="mt-2 leading-relaxed text-ink-300">Multi-currency payment rails with automated deposit holds, split payouts, and automated dispute adjudication.</p>
-          </div>
-          <div class="glass rounded-2xl p-7">
-            <i data-lucide="radio-tower" class="h-7 w-7 text-cyan-glow"></i>
-            <h3 class="mt-5 text-xl font-bold">Real-time Webhook Engines</h3>
-            <p class="mt-2 leading-relaxed text-ink-300">Sub-second inventory and booking synchronization between till systems and global delivery aggregators.</p>
-          </div>
+    <!-- Trust & core technology -->
+    <section class="tech dark" id="technology">
+      <div class="frame inner sec-pad">
+        <div class="split intro">
+          <h2 class="h-serif">Enterprise-grade infrastructure, built for scale</h2>
         </div>
+        <table class="grid-table">
+          <caption class="sr-only" style="position:absolute;left:-9999px">Core technology principles</caption>
+          <thead><tr><th>Principle</th><th>Description</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request is verified. Nothing is assumed, and security is part of the architecture rather than a layer on top.</td><td class="m">Row-level security, KYC gating, escrow-first flows</td></tr>
+            <tr><th scope="row">Edge computing and offline-first data</th><td>Local SQLite caching paired with edge functions ensures high availability across unstable networks.</td><td class="m">SQLite, edge functions</td></tr>
+            <tr><th scope="row">Biometric and identity APIs</th><td>Deep integration with AI verification providers and official identity databases.</td><td class="m">Shufti Pro, NADRA, passports</td></tr>
+            <tr><th scope="row">Automated escrow and payments</th><td>Multi-currency payment rails with automated deposit holds, split payouts and automated dispute adjudication.</td><td class="m">SafePay, Stripe, TrueLayer, GoCardless</td></tr>
+            <tr><th scope="row">Real-time webhook engines</th><td>Sub-second inventory and booking synchronization between till systems and global delivery aggregators.</td><td class="m">Webhooks, API middleware</td></tr>
+          </tbody>
+        </table>
 
-        <!-- Stack -->
-        <div class="mt-16">
-          <h3 class="text-2xl font-extrabold tracking-tight">The tools we build with</h3>
-          <p class="mt-2 max-w-2xl text-ink-300">One typed codebase from database to screen, version-controlled and tested on every change.</p>
-          <dl class="mt-8 divide-y divide-white/5 rounded-2xl border border-white/5">
-            <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
-              <dt class="flex items-center gap-2 font-semibold"><i data-lucide="code-xml" class="h-5 w-5 text-cyan-glow"></i>Languages &amp; frameworks</dt>
-              <dd class="flex flex-wrap gap-2">
-                <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">TanStack Start</span><span class="chip">TanStack Router</span><span class="chip">TanStack Query</span><span class="chip">Next.js</span><span class="chip">Vite</span><span class="chip">Tailwind CSS</span>
-              </dd>
-            </div>
-            <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
-              <dt class="flex items-center gap-2 font-semibold"><i data-lucide="database" class="h-5 w-5 text-teal-bright"></i>Data &amp; backend</dt>
-              <dd class="flex flex-wrap gap-2">
-                <span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">Supabase Auth</span><span class="chip">Edge Functions</span><span class="chip">Row-Level Security</span><span class="chip">SQLite</span>
-              </dd>
-            </div>
-            <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
-              <dt class="flex items-center gap-2 font-semibold"><i data-lucide="badge-check" class="h-5 w-5 text-[#3D7BFF]"></i>Identity &amp; payments</dt>
-              <dd class="flex flex-wrap gap-2">
-                <span class="chip">Shufti Pro</span><span class="chip">NADRA verification</span><span class="chip">SafePay</span><span class="chip">Stripe</span><span class="chip">TrueLayer</span><span class="chip">GoCardless</span><span class="chip">TPL Trakker</span>
-              </dd>
-            </div>
-            <div class="grid gap-3 px-5 py-5 sm:grid-cols-[13rem_1fr] sm:items-center sm:px-7">
-              <dt class="flex items-center gap-2 font-semibold"><i data-lucide="git-branch" class="h-5 w-5 text-cyan-glow"></i>Engineering &amp; quality</dt>
-              <dd class="flex flex-wrap gap-2">
-                <span class="chip">GitHub</span><span class="chip">Vitest</span><span class="chip">Testing Library</span><span class="chip">Zod</span><span class="chip">ESLint</span><span class="chip">Prettier</span>
-              </dd>
-            </div>
-          </dl>
+        <div class="stack">
+          <h3 class="h-sans">Stack</h3>
+          <table class="grid-table" style="margin-top:0">
+            <caption class="sr-only" style="position:absolute;left:-9999px">Technology stack</caption>
+            <tbody>
+              <tr><th scope="row">Languages and frameworks</th><td class="m">TypeScript, React, TanStack Start, TanStack Router, TanStack Query, Next.js, Vite, Tailwind CSS</td></tr>
+              <tr><th scope="row">Data and backend</th><td class="m">Supabase, PostgreSQL, Supabase Auth, Edge Functions, Row-Level Security, SQLite</td></tr>
+              <tr><th scope="row">Identity and payments</th><td class="m">Shufti Pro, NADRA verification, SafePay, Stripe, TrueLayer, GoCardless, TPL Trakker</td></tr>
+              <tr><th scope="row">Engineering and quality</th><td class="m">GitHub, Vitest, Testing Library, Zod, ESLint, Prettier</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
     <!-- Leadership -->
-    <section id="leadership" class="scroll-mt-20 py-20 sm:py-28">
-      <div class="mx-auto max-w-page px-4 sm:px-6">
-        <div class="glass relative overflow-hidden rounded-3xl p-8 sm:p-12">
-          <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-royal/30 blur-[90px]" aria-hidden="true"></div>
-          <div class="relative grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-center">
-            <div>
-              <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Founded on Enterprise Rigour</h2>
-              <p class="mt-6 flex items-baseline gap-3">
-                <span class="grad-text text-6xl font-extrabold">25+</span>
-                <span class="text-ink-300">years in blue-chip technology</span>
-              </p>
-            </div>
-            <div class="space-y-5">
-              <p class="text-lg leading-relaxed text-ink-100">Raqium is led by a technologist with over 25 years of delivery experience across two of the Big Four consultancies, retail and wealth banking, utilities, and a challenger bank. That spans product and project management, engineering leadership, and testing and quality, so we build platforms with discipline from the first line of code through to production.</p>
-              <p class="leading-relaxed text-ink-300">We bring the controls and governance of regulated industries to the speed of a startup, shipping secure, scalable products without the usual trade-off between the two.</p>
-            </div>
+    <section class="lead" id="leadership">
+      <div class="frame inner sec-pad">
+        <div class="split">
+          <div class="l-head">
+            <h2 class="h-sans" style="font-size:clamp(1.6rem,3vw,2.4rem)">Founded on enterprise rigour</h2>
+            <span class="big" aria-hidden="true">25+</span>
+            <span class="big-cap">Years in blue-chip technology</span>
+          </div>
+          <div class="l-body">
+            <p class="serif">Raqium is led by a technologist with over 25 years of delivery experience across two of the Big Four consultancies, retail and wealth banking, utilities, and a challenger bank. That spans product and project management, engineering leadership, and testing and quality, so we build platforms with discipline from the first line of code through to production.</p>
+            <p class="s">We bring the controls and governance of regulated industries to the speed of a startup, shipping secure, scalable products without the usual trade-off between the two.</p>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Contact -->
+    <section class="contact dark" id="contact">
+      <div class="frame inner sec-pad">
+        <h2 class="h-serif">Let’s build something remarkable</h2>
+        <p class="sub">Interested in partnering, investing, or piloting our platforms? Reach out to our technology team today.</p>
+        <a class="mail" href="mailto:ContactRaqium@raqiumtech.co.uk">ContactRaqium@raqiumtech.co.uk</a>
+        <p class="loc">United Kingdom</p>
+      </div>
+    </section>
   </main>
 
-  <!-- Contact & footer -->
-  <footer id="contact" class="relative scroll-mt-20 overflow-hidden border-t border-white/5 bg-midnight-900">
-    <div class="grid-bg grid-fade pointer-events-none absolute inset-0" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-page px-4 py-20 text-center sm:px-6 sm:py-24">
-      <h2 class="text-3xl font-extrabold tracking-tight sm:text-5xl">Let’s Build Something Remarkable</h2>
-      <p class="mx-auto mt-4 max-w-xl text-lg text-ink-300">Interested in partnering, investing, or piloting our platforms? Reach out to our technology team today.</p>
-      <a href="mailto:ContactRaqium@raqiumtech.co.uk" class="btn-grad glow mt-8 inline-flex max-w-full items-center gap-2 break-all rounded-full px-6 py-3.5 font-bold sm:px-8">
-        <i data-lucide="mail" class="h-5 w-5 shrink-0"></i>ContactRaqium@raqiumtech.co.uk
-      </a>
-      <p class="mt-5 inline-flex items-center gap-1.5 text-sm text-ink-400"><i data-lucide="map-pin" class="h-4 w-4"></i>United Kingdom</p>
-    </div>
-    <div class="relative border-t border-white/5">
-      <div class="mx-auto flex max-w-page flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-ink-400 sm:flex-row sm:px-6">
-        <p>© 2026 Raqium Tech Ltd. All rights reserved.</p>
-        <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2">
-          <li><a class="hover:text-cyan-glow" href="#studio">Venture Studio</a></li>
-          <li><a class="hover:text-cyan-glow" href="#portfolio">Portfolio</a></li>
-          <li><a class="hover:text-cyan-glow" href="#technology">Core Technology</a></li>
-          <li><a class="hover:text-cyan-glow" href="#leadership">Leadership</a></li>
-        </ul>
-      </div>
+  <footer class="foot dark">
+    <div class="frame">
+      <span>© 2026 Raqium Tech Ltd. All rights reserved.</span>
+      <ul>
+        <li><a href="#studio">Venture Studio</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#technology">Core Technology</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+      </ul>
     </div>
   </footer>
 
   <script>
-    // Icons
-    if (window.lucide) lucide.createIcons();
-
     // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function setMenu(open) {
-      mobileMenu.classList.toggle('hidden', !open);
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      menuBtn.innerHTML = '<i data-lucide="' + (open ? 'x' : 'menu') + '" class="h-6 w-6"></i>';
-      if (window.lucide) lucide.createIcons();
-    }
-    menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+    var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+    function setMenu(open) { nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Close' : 'Menu'; }
+    btn.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+    nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
-    // Product tabs
-    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-    function selectTab(tab, focus) {
-      tabs.forEach(t => {
-        const on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      });
-      if (focus) tab.focus();
-    }
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => selectTab(tab));
-      tab.addEventListener('keydown', e => {
-        const next = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-        if (next) { e.preventDefault(); selectTab(tabs[(i + next + tabs.length) % tabs.length], true); }
-        if (e.key === 'Home') { e.preventDefault(); selectTab(tabs[0], true); }
-        if (e.key === 'End') { e.preventDefault(); selectTab(tabs[tabs.length - 1], true); }
-      });
-    });
+    // Schematic: lines draw in once, the first time it scrolls into view
+    (function () {
+      var figs = document.querySelectorAll('.schematic');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('drawn'); io.unobserve(en.target); } });
+      }, { threshold: 0.25 });
+      figs.forEach(function (f) { f.classList.add('armed'); io.observe(f); });
+    })();
   </script>
 </body>
 </html>
