@@ -221,9 +221,54 @@
     /* Contact */
     .contact .h-serif { font-size: clamp(2.6rem, 8vw, 7rem); line-height: .96; max-width: 12em; }
     .contact .sub { margin: 1.75rem 0 0; max-width: 32rem; font-size: 1.1rem; }
-    .mail { display: inline-block; margin-top: 2.25rem; font-family: var(--mono); font-size: clamp(1rem, 2.6vw, 1.6rem); color: var(--mint); text-decoration: none; border-bottom: 1px solid var(--mint); padding-bottom: .3rem; word-break: break-all; }
-    .mail:hover { color: var(--white); border-bottom-color: var(--white); }
     .loc { margin: 1.5rem 0 0; font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
+    .contact-grid { margin-top: clamp(2.5rem, 5vw, 4rem); row-gap: 2.5rem; align-items: start; }
+    .contact-grid .c-side { grid-column: 1 / 6; }
+    .contact-grid .c-form { grid-column: 7 / 13; }
+    .contact-grid .c-side .sub { margin-top: 0; }
+    @media (max-width: 960px) { .contact-grid .c-side, .contact-grid .c-form { grid-column: 1 / -1; } }
+
+    /* Enquiry form */
+    .enquiry { display: grid; gap: 1.5rem; }
+    .enquiry fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+    .enquiry label, .enquiry legend { display: block; padding: 0; margin: 0 0 .5rem; font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
+    .enquiry .opt { color: rgba(255, 255, 255, .6); }
+    .enquiry input[type="text"], .enquiry input[type="email"], .enquiry input[type="tel"], .enquiry select, .enquiry textarea {
+      display: block; width: 100%; font: inherit; font-size: 1rem; color: var(--white); background: transparent;
+      border: 1px solid var(--line-d); border-radius: 0; padding: .85rem 1rem; -webkit-appearance: none; appearance: none;
+    }
+    .enquiry textarea { min-height: 9rem; resize: vertical; line-height: 1.5; }
+    .enquiry select { padding-right: 2.75rem; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2300E5A3' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+    .enquiry select option { background: var(--navy); color: var(--white); }
+    .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--mint); box-shadow: 0 0 0 1px var(--mint); }
+    .enquiry [aria-invalid="true"] { border-color: #FF8A8A; }
+    .enquiry ::placeholder { color: rgba(255, 255, 255, .45); }
+    .enquiry .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 640px) { .enquiry .two { grid-template-columns: 1fr; } }
+    .enquiry .hint { margin: .5rem 0 0; font-size: .875rem; color: rgba(255, 255, 255, .7); }
+    .enquiry .err { margin: .5rem 0 0; font-size: .875rem; color: #FF8A8A; }
+    .enquiry .err:empty { display: none; }
+    .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-d); }
+    .seg .opt-box { position: relative; display: flex; margin: 0; }
+    .seg .opt-box + .opt-box { border-left: 1px solid var(--line-d); }
+    .seg input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+    .seg .opt-box span { flex: 1; display: flex; align-items: center; justify-content: center; padding: .85rem 1rem; text-align: center; font-family: var(--sans); font-size: .95rem; font-weight: 700; color: var(--white); }
+    .seg input:checked + span { background: var(--mint); color: var(--navy); }
+    .seg input:focus-visible + span { outline: 2px solid var(--mint); outline-offset: -4px; }
+    .seg.bad { border-color: #FF8A8A; }
+    .enquiry .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .enquiry .send { justify-self: start; font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; color: var(--navy); background: var(--mint); border: 1px solid var(--mint); padding: .95rem 1.75rem; }
+    .enquiry .send:hover { background: var(--white); border-color: var(--white); }
+    .enquiry .send[disabled] { opacity: .6; cursor: progress; }
+    .enquiry .fine { margin: 0; font-size: .875rem; color: rgba(255, 255, 255, .7); }
+    .enquiry .status { margin: 0; font-size: .95rem; }
+    .enquiry .status:empty { display: none; }
+    .enquiry .status.bad { color: #FF8A8A; }
+    .enquiry .status.bad a { color: inherit; }
+    .thanks { border: 1px solid var(--mint); padding: clamp(1.5rem, 3vw, 2.25rem); }
+    .thanks:focus { outline: none; }
+    .thanks .h-sans { margin: 0 0 .75rem; color: var(--mint); }
+    .thanks p { margin: 0; max-width: 30rem; }
     .foot { border-top: 1px solid var(--line-d); }
     .foot .frame { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; padding: 1.4rem var(--pad); font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
     .foot ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
@@ -664,9 +709,76 @@
     <section class="contact dark" id="contact">
       <div class="frame inner sec-pad">
         <h2 class="h-serif">Let’s build something remarkable</h2>
-        <p class="sub">Interested in partnering, investing, or piloting our platforms? Reach out to our technology team today.</p>
-        <a class="mail" href="mailto:ContactRaqium@raqiumtech.co.uk">ContactRaqium@raqiumtech.co.uk</a>
-        <p class="loc">United Kingdom</p>
+        <div class="split contact-grid">
+          <div class="c-side">
+            <p class="sub">Interested in partnering, investing, or piloting our platforms? Tell us a little about your enquiry and our technology team will reply.</p>
+            <p class="loc">United Kingdom</p>
+          </div>
+          <div class="c-form">
+            <form class="enquiry" id="enquiry" novalidate>
+              <fieldset>
+                <legend id="kindLabel">I am enquiring as</legend>
+                <div class="seg" id="kindBox" role="radiogroup" aria-labelledby="kindLabel" aria-describedby="kindErr">
+                  <label class="opt-box"><input type="radio" name="kind" value="private" /><span>Private individual</span></label>
+                  <label class="opt-box"><input type="radio" name="kind" value="business" /><span>Business or institution</span></label>
+                </div>
+                <p class="err" id="kindErr"></p>
+              </fieldset>
+
+              <div>
+                <label for="nature">Nature of enquiry</label>
+                <select id="nature" name="nature" required aria-describedby="natureErr">
+                  <option value="" selected disabled>Choose one</option>
+                  <option value="investing">Investing</option>
+                  <option value="piloting">Piloting a platform</option>
+                  <option value="partnering">Partnering</option>
+                  <option value="other">Something else</option>
+                </select>
+                <p class="err" id="natureErr"></p>
+              </div>
+
+              <div id="companyRow" hidden>
+                <label for="company">Company or institution name</label>
+                <input type="text" id="company" name="company" autocomplete="organization" maxlength="120" aria-describedby="companyErr" />
+                <p class="err" id="companyErr"></p>
+              </div>
+
+              <div>
+                <label for="name">Contact name</label>
+                <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required aria-describedby="nameErr" />
+                <p class="err" id="nameErr"></p>
+              </div>
+
+              <div class="two">
+                <div>
+                  <label for="email">Email <span class="opt">(email and/or phone)</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" maxlength="254" aria-describedby="emailErr" />
+                  <p class="err" id="emailErr"></p>
+                </div>
+                <div>
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30" aria-describedby="phoneErr" />
+                  <p class="err" id="phoneErr"></p>
+                </div>
+              </div>
+
+              <div>
+                <label for="message">Brief description</label>
+                <textarea id="message" name="message" maxlength="1500" required aria-describedby="messageErr"></textarea>
+                <p class="err" id="messageErr"></p>
+              </div>
+
+              <div class="hp" aria-hidden="true">
+                <label for="website">Leave this empty</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button class="send" type="submit" id="send">Send enquiry</button>
+              <p class="status" id="status" role="status" aria-live="polite"></p>
+              <p class="fine">We use your details only to reply to your enquiry.</p>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -699,6 +811,109 @@
         entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('drawn'); io.unobserve(en.target); } });
       }, { threshold: 0.25 });
       figs.forEach(function (f) { f.classList.add('armed'); io.observe(f); });
+    })();
+
+    // Enquiry form: checks the fields, then sends them to the Raqium enquiry service, which posts them to Slack
+    (function () {
+      var ENDPOINT = 'https://npidsufrxmvpfjkijxre.supabase.co/functions/v1/raqium-enquiry';
+      var FALLBACK_EMAIL = 'ContactRaqium@raqiumtech.co.uk';
+      var MIN_FILL_MS = 3500; // the service ignores posts faster than this (robots), so a very quick person waits a moment
+      var form = document.getElementById('enquiry');
+      if (!form) return;
+      var opened = Date.now();
+      var statusEl = document.getElementById('status'), sendBtn = document.getElementById('send');
+      var companyRow = document.getElementById('companyRow');
+      var ORDER = ['kind', 'nature', 'company', 'name', 'email', 'phone', 'message'];
+
+      function val(n) { var el = form.elements[n]; return el ? String(el.value).trim() : ''; }
+      function kind() { var c = form.querySelector('input[name="kind"]:checked'); return c ? c.value : ''; }
+      function setErr(n, msg) {
+        var p = document.getElementById(n + 'Err');
+        if (p) p.textContent = msg || '';
+        if (n === 'kind') { document.getElementById('kindBox').classList.toggle('bad', !!msg); return; }
+        var el = form.elements[n];
+        if (!el) return;
+        if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+      }
+      function focusField(n) {
+        var el = n === 'kind' ? form.querySelector('input[name="kind"]') : form.elements[n];
+        if (el) el.focus();
+      }
+      function check() {
+        var errs = {}, k = kind(), e = val('email'), p = val('phone');
+        if (!k) errs.kind = 'Please choose who is enquiring.';
+        if (!val('nature')) errs.nature = 'Please choose the nature of your enquiry.';
+        if (k === 'business' && val('company').length < 2) errs.company = 'Please give the company or institution name.';
+        if (val('name').length < 2) errs.name = 'Please give a contact name.';
+        if (!e && !p) errs.email = 'Please give an email address or a phone number.';
+        else {
+          if (e && !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/.test(e)) errs.email = 'That email address doesn’t look right.';
+          if (p && (!/^[+()\d][\d\s().+-]{5,28}$/.test(p) || p.replace(/\D/g, '').length < 7)) errs.phone = 'That phone number doesn’t look right.';
+        }
+        if (val('message').length < 10) errs.message = 'Please add a short description of your enquiry.';
+        return errs;
+      }
+      function fail(msg) {
+        statusEl.className = 'status bad';
+        statusEl.textContent = msg;
+        var a = document.createElement('a');
+        a.href = 'mailto:' + FALLBACK_EMAIL;
+        a.textContent = FALLBACK_EMAIL;
+        statusEl.appendChild(a);
+        statusEl.appendChild(document.createTextNode('.'));
+        reset();
+      }
+      function reset() { sendBtn.disabled = false; sendBtn.textContent = 'Send enquiry'; }
+      function done() {
+        var box = document.createElement('div');
+        box.className = 'thanks'; box.tabIndex = -1; box.setAttribute('role', 'status');
+        var h = document.createElement('h3'); h.className = 'h-sans'; h.textContent = 'Thank you';
+        var p = document.createElement('p'); p.textContent = 'Your enquiry has reached the Raqium team. We will reply by email or phone as soon as we can.';
+        box.appendChild(h); box.appendChild(p);
+        form.parentNode.replaceChild(box, form);
+        box.focus();
+      }
+      function send(payload) {
+        payload.elapsed = Date.now() - opened;
+        fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, data: d }; }); })
+          .then(function (res) {
+            if (res.status === 200 && res.data.ok) { done(); return; }
+            if (res.status === 400 && res.data.field && ORDER.indexOf(res.data.field) > -1) {
+              setErr(res.data.field, res.data.message || 'Please check this field.');
+              focusField(res.data.field); reset(); return;
+            }
+            fail(res.status === 429 ? 'Too many attempts just now. Please try again later, or email ' : 'Sorry, that did not send. Please try again, or email ');
+          })
+          .catch(function () { fail('Sorry, that did not send. Please check your connection and try again, or email '); });
+      }
+
+      Array.prototype.forEach.call(form.querySelectorAll('input[name="kind"]'), function (r) {
+        r.addEventListener('change', function () {
+          var biz = kind() === 'business';
+          companyRow.hidden = !biz;
+          setErr('kind', '');
+          if (!biz) setErr('company', '');
+        });
+      });
+      ['nature', 'company', 'name', 'email', 'phone', 'message'].forEach(function (n) {
+        var el = form.elements[n];
+        if (el) el.addEventListener('input', function () { setErr(n, ''); });
+      });
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        statusEl.className = 'status'; statusEl.textContent = '';
+        var errs = check(), first = null;
+        ORDER.forEach(function (n) { setErr(n, errs[n] || ''); if (errs[n] && !first) first = n; });
+        if (first) { focusField(first); return; }
+        sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+        var payload = {
+          kind: kind(), nature: val('nature'), company: kind() === 'business' ? val('company') : '',
+          name: val('name'), email: val('email'), phone: val('phone'), message: val('message'), website: val('website')
+        };
+        setTimeout(function () { send(payload); }, Math.max(0, MIN_FILL_MS - (Date.now() - opened)));
+      });
     })();
   </script>
 </body>
