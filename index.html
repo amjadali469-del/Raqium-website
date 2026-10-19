@@ -48,8 +48,9 @@
 
     /* Header: bare links on a hairline */
     .site-head { position: sticky; top: 0; z-index: 20; background: var(--concrete); border-bottom: 1px solid var(--ink); }
-    .site-head .frame { display: flex; align-items: center; gap: 2.25rem; min-height: var(--head-h); padding: 0 var(--pad); flex-wrap: wrap; }
-    .wordmark { font-weight: 800; font-stretch: 112%; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; margin-right: 1rem; }
+    .site-head .frame { display: flex; align-items: center; gap: 2.25rem; padding-top: 0 !important; min-height: var(--head-h); padding: 0 var(--pad); flex-wrap: wrap; }
+    .brand { align-self: stretch; display: flex; align-items: center; min-height: var(--head-h); margin-left: calc(var(--pad) * -1); padding: 0 1.5rem 0 var(--pad); background: var(--charcoal); border-right: 1px solid var(--ink); }
+    .brand img { display: block; height: 2.35rem; width: auto; }
     .nav { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; font-size: .9rem; font-weight: 600; }
     .nav a { text-decoration: none; padding: .25rem 0; border-bottom: 1px solid transparent; }
     .nav a:hover { border-bottom-color: currentColor; }
@@ -151,7 +152,7 @@
     .spec caption { color: var(--slate); }
     .spec th, .spec td { padding: .8rem 1rem .8rem 0; border-top: 1px solid var(--line-l); }
     .spec tr:last-child th, .spec tr:last-child td { border-bottom: 1px solid var(--line-l); }
-    .spec th { width: 9.5rem; font-weight: 500; color: var(--slate); }
+    .spec th { width: 11rem; font-weight: 500; color: var(--slate); }
     @media (max-width: 860px) {
       .p-head, .p-body, .product.flip .p-head, .product.flip .p-body { grid-column: 1 / -1; grid-row: auto; }
       .spec th { width: 7.5rem; }
@@ -161,6 +162,27 @@
       .spec th, .spec td { display: block; width: auto; border: 0 !important; padding: .1rem 0; }
       .spec tr:last-child { border-bottom: 1px solid var(--line-l); }
     }
+
+
+    .p-status { display: inline-flex; flex-wrap: wrap; gap: .25rem .75rem; margin: 1.25rem 0 0; padding: .45rem .75rem; border: 1px solid var(--ink); font-family: var(--mono); font-size: .8125rem; line-height: 1.4; max-width: 100%; }
+    .p-status span { color: var(--slate); }
+    .spec .sub th { padding: 1.4rem 0 .5rem; width: auto; font-family: var(--sans); font-weight: 700; font-size: .875rem; color: var(--ink); border-top: 1px solid var(--ink); }
+    .spec .sub:first-child th { border-top: 0; padding-top: .25rem; }
+    .spec.prose td { font-family: var(--sans); font-size: .98rem; line-height: 1.5; }
+    .spec.prose th { font-family: var(--sans); font-weight: 700; font-size: .98rem; color: var(--ink); width: 36%; }
+    details.grp { margin-top: 1.25rem; border-top: 1px solid var(--ink); }
+    details.grp > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; font-family: var(--mono); font-size: .8125rem; font-weight: 500; }
+    details.grp > summary::-webkit-details-marker { display: none; }
+    details.grp > summary::after { content: "+"; font-size: 1.1rem; line-height: 1; }
+    details.grp[open] > summary::after { content: "\2212"; }
+    details.grp > summary:hover { color: var(--brass); }
+    details.grp .spec { margin-top: 0; }
+    details.grp .spec caption { position: absolute; left: -9999px; }
+    .spec-note { margin: 0 0 1.25rem; max-width: 40rem; font-size: .98rem; }
+    pre.tree { margin: 0 0 1.5rem; padding: 1.25rem 1.25rem; overflow-x: auto; background: var(--concrete-2); border: 1px solid var(--line-l); font-family: var(--mono); font-size: .78rem; line-height: 1.6; }
+    pre.tree code { font-family: inherit; }
+    @media (max-width: 860px) { .spec.prose th { width: 9rem; } }
+    @media (max-width: 520px) { .spec.prose tr { display: block; } .spec.prose th { width: auto; } }
 
     /* Core technology */
     .tech .intro .h-serif { grid-column: 1 / 9; }
@@ -206,7 +228,7 @@
 
   <header class="site-head">
     <div class="frame">
-      <a class="wordmark" href="#top" aria-label="Raqium home">Raqium</a>
+      <a class="brand" href="#top" aria-label="Raqium home"><img src="logo.png" alt="Raqium" width="640" height="198" /></a>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
       <ul class="nav" id="nav">
         <li><a href="#studio">Venture Studio</a></li>
@@ -231,7 +253,7 @@
         </div>
         <div class="hero-data">
           <div><b>25+</b><span>Years of enterprise technology leadership</span></div>
-          <div><b>4</b><span>Core products in development</span></div>
+          <div><b>5</b><span>Core products in development</span></div>
           <div><b>Zero-trust</b><span>Security architecture throughout</span></div>
         </div>
       </div>
@@ -246,13 +268,13 @@
         </div>
         <figure class="plan">
           <svg class="schematic schematic-desktop" viewBox="0 0 1200 604" role="img" aria-labelledby="sd-t" xmlns="http://www.w3.org/2000/svg">
-<title id="sd-t">Schematic: RentKar, DriveSync, SyncBite and TrueDrive anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
+<title id="sd-t">Schematic: TrueDrive, RentKar, MedDex, SyncBite and DriveSync anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
 <defs><pattern id="hatchD" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1" stroke-opacity=".38"/></pattern></defs>
 <rect x=".5" y=".5" width="1199" height="603" fill="none" stroke="currentColor" stroke-opacity=".5"/>
 <path d="M0 5H1200" stroke="currentColor" stroke-opacity=".4" stroke-width="8" stroke-dasharray="1 24" fill="none"/>
 <path d="M5 0V604" stroke="currentColor" stroke-opacity=".4" stroke-width="8" stroke-dasharray="1 24" fill="none"/>
-<g class="dim" stroke="currentColor" stroke-opacity=".7" fill="none"><path d="M250 40H1140M250 32V48M1140 32V48M246 44l8 -8M1136 44l8 -8"/></g>
-<text class="mono" x="695" y="28" text-anchor="middle" font-size="11.5">Raqium venture studio</text>
+<g stroke="currentColor" stroke-opacity=".7" fill="none"><path d="M210 40H1160M210 32V48M1160 32V48M206 44l8 -8M1156 44l8 -8"/></g>
+<text class="mono" x="685" y="28" text-anchor="middle" font-size="11.5">Raqium venture studio</text>
 <rect x="210" y="214" width="950" height="60" fill="url(#hatchD)" stroke="currentColor" stroke-opacity=".6"/>
 <path d="M198 244H210" stroke="currentColor" stroke-opacity=".6"/>
 <text class="sans" x="190" y="249" text-anchor="end" font-size="14.5">Identity verification</text>
@@ -266,106 +288,129 @@
 <path d="M210 486H1160" stroke="currentColor" stroke-width="2.2"/>
 <path d="M198 494H210" stroke="currentColor" stroke-opacity=".6"/>
 <text class="sans" x="190" y="499" text-anchor="end" font-size="14.5">Zero-trust security</text>
-<rect x="250" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="266" y="100" font-size="21">RentKar</text>
-<text class="mono" x="266" y="120" font-size="10.5" fill-opacity=".8">Mobility · Islamabad–AJK</text>
-<path class="ln" pathLength="1" style="--d:0.00s" d="M330 136V214" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:0.90s" cx="330" cy="214" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.12s" d="M350 136V304" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.02s" cx="350" cy="304" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.24s" d="M370 136V394" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.14s" cx="370" cy="394" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.66s" d="M350 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
-<rect x="480" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="496" y="100" font-size="21">DriveSync</text>
-<text class="mono" x="496" y="120" font-size="10.5" fill-opacity=".8">Scheduling · UK ADIs</text>
-<path class="ln" pathLength="1" style="--d:0.36s" d="M580 136V304" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.26s" cx="580" cy="304" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.48s" d="M600 136V394" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.38s" cx="600" cy="394" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.90s" d="M580 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
-<rect x="710" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="726" y="100" font-size="21">SyncBite</text>
-<text class="mono" x="726" y="120" font-size="10.5" fill-opacity=".8">Middleware · EPOS</text>
-<path class="ln" pathLength="1" style="--d:0.60s" d="M830 136V394" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.50s" cx="830" cy="394" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:1.02s" d="M810 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
-<rect x="940" y="66" width="200" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="956" y="100" font-size="21">TrueDrive</text>
-<text class="mono" x="956" y="120" font-size="10.5" fill-opacity=".8">Marketplace · UK</text>
-<path class="ln" pathLength="1" style="--d:0.72s" d="M1020 136V214" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.62s" cx="1020" cy="214" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.84s" d="M1040 136V304" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.74s" cx="1040" cy="304" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.96s" d="M1060 136V394" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.86s" cx="1060" cy="394" r="4" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:1.38s" d="M1040 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="210" y="66" width="170" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="224" y="99" font-size="20">TrueDrive</text>
+<text class="mono" x="224" y="120" font-size="10.5" fill-opacity=".8">Marketplace · UK</text>
+<path class="ln" pathLength="1" style="--d:0.00s" d="M275 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:0.90s" cx="275" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.10s" d="M295 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.00s" cx="295" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.20s" d="M315 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.10s" cx="315" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.60s" d="M295 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="405" y="66" width="170" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="419" y="99" font-size="20">RentKar</text>
+<text class="mono" x="419" y="120" font-size="10.5" fill-opacity=".8">Rental · AJK</text>
+<path class="ln" pathLength="1" style="--d:0.30s" d="M470 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.20s" cx="470" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.40s" d="M490 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.30s" cx="490" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.50s" d="M510 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.40s" cx="510" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.90s" d="M490 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="600" y="66" width="170" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="614" y="99" font-size="20">MedDex</text>
+<text class="mono" x="614" y="120" font-size="10.5" fill-opacity=".8">Med education</text>
+<path class="ln" pathLength="1" style="--d:0.60s" d="M665 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.50s" cx="665" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.70s" d="M705 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.60s" cx="705" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.10s" d="M685 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="795" y="66" width="170" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="809" y="99" font-size="20">SyncBite</text>
+<text class="mono" x="809" y="120" font-size="10.5" fill-opacity=".8">Middleware · EPOS</text>
+<path class="ln" pathLength="1" style="--d:0.80s" d="M860 136V214" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.70s" cx="860" cy="214" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.90s" d="M880 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.80s" cx="880" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.00s" d="M900 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.90s" cx="900" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.40s" d="M880 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
+<rect x="990" y="66" width="170" height="70" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="1004" y="99" font-size="20">DriveSync</text>
+<text class="mono" x="1004" y="120" font-size="10.5" fill-opacity=".8">Scheduling · UK</text>
+<path class="ln" pathLength="1" style="--d:1.10s" d="M1075 136V304" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:2.00s" cx="1075" cy="304" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.20s" d="M1095 136V394" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:2.10s" cx="1095" cy="394" r="4" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.60s" d="M1075 454V486" stroke="currentColor" stroke-opacity=".7" fill="none"/>
 <g stroke="currentColor" stroke-opacity=".6" fill="none"><rect x="950" y="522" width="240" height="56"/><path d="M950 542H1190"/></g>
 <text class="mono" x="962" y="536" font-size="10.5">Raqium Tech Ltd</text>
 <text class="mono" x="962" y="557" font-size="10.5" fill-opacity=".85">Platform schematic</text>
 <text class="mono" x="962" y="570" font-size="10.5" fill-opacity=".85">Ventures to foundations</text>
 <text class="mono" x="24" y="570" font-size="10.5" fill-opacity=".7">Schematic, not to scale</text>
 </svg>
-          <svg class="schematic schematic-phone" viewBox="0 0 360 470" role="img" aria-labelledby="sp-t" xmlns="http://www.w3.org/2000/svg">
-<title id="sp-t">Schematic: RentKar, DriveSync, SyncBite and TrueDrive anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
+          <svg class="schematic schematic-phone" viewBox="0 0 360 520" role="img" aria-labelledby="sp-t" xmlns="http://www.w3.org/2000/svg">
+<title id="sp-t">Schematic: TrueDrive, RentKar, MedDex, SyncBite and DriveSync anchor into shared identity, payment and data layers, all resting on a zero-trust security foundation.</title>
 <defs><pattern id="hatchP" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1" stroke-opacity=".38"/></pattern></defs>
-<rect x=".5" y=".5" width="359" height="469" fill="none" stroke="currentColor" stroke-opacity=".5"/>
+<rect x=".5" y=".5" width="359" height="519" fill="none" stroke="currentColor" stroke-opacity=".5"/>
 <g stroke="currentColor" stroke-opacity=".7" fill="none"><path d="M12 30H348M12 24V36M348 24V36M8 34l8 -8M344 34l8 -8"/></g>
 <text class="mono" x="180" y="20" text-anchor="middle" font-size="10.5">Raqium venture studio</text>
-<rect x="196" y="44" width="46" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
-<text class="sans plate" transform="translate(224.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Identity</text>
-<rect x="254" y="44" width="46" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
-<text class="sans plate" transform="translate(282.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Payments</text>
-<rect x="312" y="44" width="36" height="296" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
-<text class="sans plate" transform="translate(335.0 192) rotate(-90)" text-anchor="middle" font-size="12.5">Data and API</text>
+<rect x="196" y="44" width="46" height="366" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(224.0 227) rotate(-90)" text-anchor="middle" font-size="12.5">Identity</text>
+<rect x="254" y="44" width="46" height="366" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(282.0 227) rotate(-90)" text-anchor="middle" font-size="12.5">Payments</text>
+<rect x="312" y="44" width="36" height="366" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<text class="sans plate" transform="translate(335.0 227) rotate(-90)" text-anchor="middle" font-size="12.5">Data and API</text>
 <rect x="12" y="54" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="24" y="79" font-size="16.5">RentKar</text>
-<text class="mono" x="24" y="97" font-size="10" fill-opacity=".8">Mobility</text>
+<text class="sans" x="24" y="79" font-size="16.5">TrueDrive</text>
+<text class="mono" x="24" y="97" font-size="10" fill-opacity=".8">Marketplace</text>
 <path class="ln" pathLength="1" style="--d:0.00s" d="M152 68H196" stroke="currentColor" fill="none"/>
 <circle class="node" style="--d:0.90s" cx="196" cy="68" r="3.6" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.12s" d="M152 82H254" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.02s" cx="254" cy="82" r="3.6" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.24s" d="M152 96H312" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.14s" cx="312" cy="96" r="3.6" fill="var(--brass-d)"/>
-<rect x="12" y="128" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="24" y="153" font-size="16.5">DriveSync</text>
-<text class="mono" x="24" y="171" font-size="10" fill-opacity=".8">Scheduling</text>
-<path class="ln" pathLength="1" style="--d:0.36s" d="M152 156H254" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.26s" cx="254" cy="156" r="3.6" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.48s" d="M152 170H312" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.38s" cx="312" cy="170" r="3.6" fill="var(--brass-d)"/>
-<rect x="12" y="202" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="24" y="227" font-size="16.5">SyncBite</text>
-<text class="mono" x="24" y="245" font-size="10" fill-opacity=".8">Middleware</text>
-<path class="ln" pathLength="1" style="--d:0.60s" d="M152 244H312" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.50s" cx="312" cy="244" r="3.6" fill="var(--brass-d)"/>
-<rect x="12" y="276" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
-<text class="sans" x="24" y="301" font-size="16.5">TrueDrive</text>
-<text class="mono" x="24" y="319" font-size="10" fill-opacity=".8">Marketplace</text>
-<path class="ln" pathLength="1" style="--d:0.72s" d="M152 290H196" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.62s" cx="196" cy="290" r="3.6" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.84s" d="M152 304H254" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.74s" cx="254" cy="304" r="3.6" fill="var(--brass-d)"/>
-<path class="ln" pathLength="1" style="--d:0.96s" d="M152 318H312" stroke="currentColor" fill="none"/>
-<circle class="node" style="--d:1.86s" cx="312" cy="318" r="3.6" fill="var(--brass-d)"/>
-<path d="M219.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
-<path d="M277.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
-<path d="M330.0 340V372" stroke="currentColor" stroke-opacity=".7"/>
-<rect x="12" y="372" width="336" height="14" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
-<path d="M12 372H348" stroke="currentColor" stroke-width="2.2"/>
-<text class="sans" x="12" y="408" font-size="13.5">Zero-trust security</text>
-<text class="mono" x="12" y="456" font-size="10" fill-opacity=".7">Schematic, not to scale</text>
+<path class="ln" pathLength="1" style="--d:0.10s" d="M152 82H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.00s" cx="254" cy="82" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.20s" d="M152 96H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.10s" cx="312" cy="96" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="126" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="151" font-size="16.5">RentKar</text>
+<text class="mono" x="24" y="169" font-size="10" fill-opacity=".8">Rental</text>
+<path class="ln" pathLength="1" style="--d:0.30s" d="M152 140H196" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.20s" cx="196" cy="140" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.40s" d="M152 154H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.30s" cx="254" cy="154" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.50s" d="M152 168H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.40s" cx="312" cy="168" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="198" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="223" font-size="16.5">MedDex</text>
+<text class="mono" x="24" y="241" font-size="10" fill-opacity=".8">Education</text>
+<path class="ln" pathLength="1" style="--d:0.60s" d="M152 212H196" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.50s" cx="196" cy="212" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.70s" d="M152 240H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.60s" cx="312" cy="240" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="270" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="295" font-size="16.5">SyncBite</text>
+<text class="mono" x="24" y="313" font-size="10" fill-opacity=".8">Middleware</text>
+<path class="ln" pathLength="1" style="--d:0.80s" d="M152 284H196" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.70s" cx="196" cy="284" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:0.90s" d="M152 298H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.80s" cx="254" cy="298" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.00s" d="M152 312H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:1.90s" cx="312" cy="312" r="3.6" fill="var(--brass-d)"/>
+<rect x="12" y="342" width="140" height="56" style="fill:var(--charcoal)" stroke="currentColor"/>
+<text class="sans" x="24" y="367" font-size="16.5">DriveSync</text>
+<text class="mono" x="24" y="385" font-size="10" fill-opacity=".8">Scheduling</text>
+<path class="ln" pathLength="1" style="--d:1.10s" d="M152 370H254" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:2.00s" cx="254" cy="370" r="3.6" fill="var(--brass-d)"/>
+<path class="ln" pathLength="1" style="--d:1.20s" d="M152 384H312" stroke="currentColor" fill="none"/>
+<circle class="node" style="--d:2.10s" cx="312" cy="384" r="3.6" fill="var(--brass-d)"/>
+<path d="M219.0 410V442" stroke="currentColor" stroke-opacity=".7"/>
+<path d="M277.0 410V442" stroke="currentColor" stroke-opacity=".7"/>
+<path d="M330.0 410V442" stroke="currentColor" stroke-opacity=".7"/>
+<rect x="12" y="442" width="336" height="14" fill="url(#hatchP)" stroke="currentColor" stroke-opacity=".6"/>
+<path d="M12 442H348" stroke="currentColor" stroke-width="2.2"/>
+<text class="sans" x="12" y="478" font-size="13.5">Zero-trust security</text>
+<text class="mono" x="12" y="506" font-size="10" fill-opacity=".7">Schematic, not to scale</text>
 </svg>
-          <figcaption class="sr-only" style="position:absolute;left:-9999px">Four ventures connect into shared identity, payments and data layers resting on a zero-trust foundation.</figcaption>
+          <figcaption class="sr-only" style="position:absolute;left:-9999px">Five ventures connect into shared identity, payments and data layers resting on a zero-trust foundation.</figcaption>
         </figure>
         <table class="legend">
           <caption>Foundation layers</caption>
           <thead class="sr-only" style="position:absolute;left:-9999px"><tr><th>Layer</th><th>Function</th><th>Components</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Identity verification</th><td>Biometric and document checks before an asset changes hands.</td><td>Shufti Pro, NADRA, passports</td></tr>
-            <tr><th scope="row">Payments and escrow</th><td>Deposit holds, split payouts and dispute adjudication.</td><td>SafePay, Stripe, TrueLayer, GoCardless</td></tr>
-            <tr><th scope="row">Data and API routing</th><td>Offline-first caching, edge functions and live synchronization.</td><td>Supabase, PostgreSQL, SQLite, webhooks</td></tr>
-            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request verified; nothing assumed.</td><td>Row-level security, escrow-first flows</td></tr>
+            <tr><th scope="row">Identity verification</th><td>Identity checks and role-based access before an asset changes hands.</td><td>Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
+            <tr><th scope="row">Payments and escrow</th><td>Split payments, escrow holds, automated commission and reconciliation.</td><td>Stripe Connect, Razorpay Route, TrueLayer, Square Terminal API</td></tr>
+            <tr><th scope="row">Data and API routing</th><td>Tenant-isolated databases, serverless functions and live synchronization.</td><td>PostgreSQL, Turso, Appwrite, Qdrant, webhooks</td></tr>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request verified; nothing assumed.</td><td>Document-level security, database-per-tenant isolation, server-side key proxying</td></tr>
           </tbody>
         </table>
       </div>
@@ -376,99 +421,179 @@
       <div class="frame inner">
         <div class="split intro sec-pad" style="padding-bottom:clamp(2.5rem,5vw,4rem)">
           <h2 class="h-sans">Portfolio</h2>
-          <p class="h-serif">Four platforms, each built to remove a costly point of friction in its market.</p>
+          <p class="h-serif">Five platforms, each built to remove a costly point of friction in its market.</p>
         </div>
 
-        <article class="product">
-          <div class="split">
-            <div class="p-head">
-              <h3 class="p-name">RentKar</h3>
-              <p class="p-cat">Cross-border mobility platform, Islamabad and AJK corridor</p>
-            </div>
-            <div class="p-body">
-              <p class="p-purpose">Premium zero-trust mobility and asset security marketplace.</p>
-              <p class="p-value">Eliminating the trust barrier in high-value vehicle rentals through NADRA-linked AI identity verification, automated digital escrow holds, and API-triggered GPS immobilization.</p>
-              <table class="spec">
-                <caption>Specification</caption>
-                <tbody>
-                  <tr><th scope="row">Identity</th><td>Shufti Pro AI KYC: biometric facial matching, CNIC and passport verification</td></tr>
-                  <tr><th scope="row">Escrow</th><td>SafePay digital escrow: automated security deposit authorization holds</td></tr>
-                  <tr><th scope="row">Telematics</th><td>TPL Trakker: real-time geofencing, remote asset protection</td></tr>
-                  <tr><th scope="row">Offline</th><td>SQLite local caching for low-signal mountain routes</td></tr>
-                  <tr><th scope="row">Stack</th><td>TypeScript, React, TanStack Start, Supabase</td></tr>
-                  <tr><th scope="row">Status</th><td>In development</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-
-        <article class="product flip">
-          <div class="split">
-            <div class="p-head">
-              <h3 class="p-name">DriveSync</h3>
-              <p class="p-cat">B2B2C SaaS and route optimization, UK ADI engine</p>
-            </div>
-            <div class="p-body">
-              <p class="p-purpose">Intelligent scheduling and revenue protection for UK driving instructors.</p>
-              <p class="p-value">Replacing manual diaries with automated, postcode-aware route planning and hard-coded cancellation fee rules for UK Approved Driving Instructors.</p>
-              <table class="spec">
-                <caption>Specification</caption>
-                <tbody>
-                  <tr><th scope="row">Routing</th><td>Postcode travel matrix: exact travel time between lesson locations to optimize fuel and schedule gaps</td></tr>
-                  <tr><th scope="row">Scheduling</th><td>DVSA test-date auto-matching against local driving test availability</td></tr>
-                  <tr><th scope="row">Payments</th><td>Upfront escrow via Stripe: enforces cancellation rules, secures instructor earnings</td></tr>
-                  <tr><th scope="row">Status</th><td>In development</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-
-        <article class="product">
-          <div class="split">
-            <div class="p-head">
-              <h3 class="p-name">SyncBite</h3>
-              <p class="p-cat">B2B micro-SaaS, hospitality middleware and EPOS bridge</p>
-            </div>
-            <div class="p-body">
-              <p class="p-purpose">Cascade inventory sync and middleware for cafes and dessert parlours.</p>
-              <p class="p-value">A cloud-based API bridge connecting EPOS systems such as Square directly to Uber Eats, Just Eat and Deliveroo, preventing stockouts and cancelled-order penalties.</p>
-              <table class="spec">
-                <caption>Specification</caption>
-                <tbody>
-                  <tr><th scope="row">Inventory</th><td>Cascade ingredient-level syncing: pauses multi-item menu options the moment one ingredient runs out</td></tr>
-                  <tr><th scope="row">Modifiers</th><td>Complex modifier mapping: no dropped customization data between delivery apps and kitchen printers</td></tr>
-                  <tr><th scope="row">Throttling</th><td>Peak-rush auto-throttling extends preparation times in high-volume hours</td></tr>
-                  <tr><th scope="row">Integrations</th><td>Square EPOS; Uber Eats, Just Eat, Deliveroo</td></tr>
-                  <tr><th scope="row">Status</th><td>In development</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-
-        <article class="product flip">
+        <article class="product" id="truedrive">
           <div class="split">
             <div class="p-head">
               <h3 class="p-name">TrueDrive</h3>
               <p class="p-cat">UK automotive marketplace, buy and rent</p>
+              <p class="p-status"><span>Status</span>Development and testing</p>
             </div>
             <div class="p-body">
               <p class="p-purpose">Premium zero-trust car marketplace for buying and renting across the UK.</p>
               <p class="p-value">Clean-title cars only, with buyer funds held in escrow until the keys change hands. Verified before listing. Protected until handover. Covered on the road.</p>
-              <table class="spec">
-                <caption>Specification</caption>
-                <tbody>
-                  <tr><th scope="row">Listing gate</th><td>Registration check blocks stolen, written-off and financed vehicles automatically</td></tr>
-                  <tr><th scope="row">Escrow</th><td>Open Banking escrow (TrueLayer): funds release when the buyer scans the seller's QR code at handover</td></tr>
-                  <tr><th scope="row">Messaging</th><td>Phone numbers and bank details masked in-app</td></tr>
-                  <tr><th scope="row">Cover</th><td>Short-term insurance for test drives and rentals; breakdown assistance bundled</td></tr>
-                  <tr><th scope="row">Billing</th><td>GoCardless subscriptions for dealers</td></tr>
-                  <tr><th scope="row">Stack</th><td>Next.js, React, Supabase</td></tr>
-                  <tr><th scope="row">Status</th><td>In development</td></tr>
-                </tbody>
-              </table>
+              <table class="spec"><caption>Enterprise technology stack</caption><tbody>
+<tr class="sub"><th colspan="2" scope="colgroup">Frontend orchestration and presentation layer</th></tr>
+<tr><th scope="row">Framework</th><td>Next.js (App Router). Deployed for asynchronous server-side rendering, optimized state hydration, and distributed edge delivery.</td></tr>
+<tr><th scope="row">Styling and kinematics</th><td>Tailwind CSS with Framer Motion. A scalable, utility-first DOM styling matrix paired with fluid, hardware-accelerated state transitions.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Backend persistence and data abstraction layer</th></tr>
+<tr><th scope="row">Database topology</th><td>Neon PostgreSQL. A serverless relational data store enabling elastic compute scaling and high-availability cross-region replication.</td></tr>
+<tr><th scope="row">Data modeling</th><td>Drizzle ORM. Enforcing rigid, type-safe bidirectional object-relational mapping.</td></tr>
+<tr><th scope="row">Blob storage</th><td>UploadThing. Handling asynchronous, multipart binary data ingestion.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">IAM, security and cognitive inference</th></tr>
+<tr><th scope="row">Identity and access management</th><td>Clerk Auth. Facilitating role-based access control (RBAC), multi-tenant provisioning, and cryptographic multi-factor authentication.</td></tr>
+<tr><th scope="row">Cognitive processing</th><td>Anthropic API (Claude). Integrating an advanced Large Language Model (LLM) inference engine to run predictive heuristics and automated triage workflows.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Financial clearing and external telemetry</th></tr>
+<tr><th scope="row">Clearing hub</th><td>Stripe / TrueLayer. Executing multi-party fiat routing, automated reconciliation, and synchronous ledger updates via Open Banking protocols.</td></tr>
+<tr><th scope="row">Statutory and vendor ingestion pipes</th><td>Consuming RESTful endpoints from sovereign regulatory bodies (DVLA/DVSA equivalents) and third-party aggregate vendors.</td></tr>
+</tbody></table>
+<details class="grp"><summary>Architectural pattern: Feature-Sliced Design</summary>
+<p class="spec-note">To prevent monolithic coupling and technical debt within a multi-vertical ecosystem, the codebase enforces a Feature-Sliced Design (FSD) paradigm. This strictly isolates business domains and enforces unidirectional dependency graphing.</p><pre class="tree" tabindex="0" aria-label="Monorepo directory topology"><code>src/
+├─ shared/         Core infrastructure primitives (domain-agnostic)
+│  ├─ api/         Relational schema definitions, stateless DB clients
+│  ├─ ui/          Atomic design components
+│  └─ lib/         Cryptographic helpers, deterministic date formatters, regex sanitizers
+├─ entities/       Domain object abstractions
+│  ├─ asset/            Standardized inventory presentation components
+│  └─ user-profile/     Federated identity badges and reputation metrics
+├─ features/       Isolated business logic and workflows; contract exposed via index.ts
+│  ├─ transactional-custody-gateway/   Cryptographic title transfer, multi-party settlement logic
+│  ├─ predictive-asset-simulation/     External API polling to render dynamic optimizations
+│  ├─ automated-diagnostic-triage/     Cognitive visual processing routes operational anomalies
+│  └─ provenance-validation-matrix/    Historical archival data cross-referenced with regulatory databases
+└─ app/            Route orchestration layer: stateless layout composers
+   ├─ (discovery)/page.tsx                         Primary top-of-funnel asset aggregation feed
+   ├─ (settlement)/checkout/page.tsx               Secure enclave for final financial execution
+   └─ (commercial-dashboard)/dashboard/page.tsx    B2B portal for dynamic quota management</code></pre>
+</details>
+            </div>
+          </div>
+        </article>
+
+        <article class="product flip" id="rentkar">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">RentKar</h3>
+              <p class="p-cat">Cross-border mobility platform, Islamabad and AJK corridor</p>
+              <p class="p-status"><span>Status</span>Development and testing</p>
+            </div>
+            <div class="p-body">
+              <p class="p-purpose">Premium zero-trust mobility and asset security marketplace.</p>
+              <p class="p-value">A peer-to-peer rental marketplace that replaces upfront deposits with algorithmic identity verification, and handles delivery and return logistics end to end.</p>
+              <table class="spec"><caption>Core tech stack architecture</caption><tbody>
+<tr><th scope="row">Front-end framework</th><td>React Native/Flutter (iOS/Android) for seamless native experience; React.js/Next.js for responsive, SEO-optimized web portal.</td></tr>
+<tr><th scope="row">Backend and API layer</th><td>Scalable microservices via Node.js (Express/NestJS) or Python (Django/FastAPI). Integrates a GraphQL API for optimized data querying on complex item listings.</td></tr>
+<tr><th scope="row">Database infrastructure</th><td>Hybrid topology. Relational DB (PostgreSQL) for structured transactional data (user profiles, ledgers, escrow); NoSQL DB (MongoDB) for unstructured, highly variable listing attributes.</td></tr>
+<tr><th scope="row">Search and discovery</th><td>Elasticsearch or Algolia driving typo-tolerant, location-based filtering and real-time availability indexing.</td></tr>
+<tr><th scope="row">Verification and security</th><td>Third-party KYC/AML integration (Onfido, Veriff, Digilocker) executing real-time identity and creditworthiness checks for zero-deposit risk mitigation.</td></tr>
+<tr><th scope="row">Payment and escrow gateway</th><td>Stripe Connect / Razorpay Route for compliant, split-payment routing and automated commission deduction.</td></tr>
+</tbody></table>
+<details class="grp"><summary>Key value propositions</summary>
+<table class="spec prose"><caption>Key value propositions</caption><tbody>
+<tr><th scope="row">Frictionless acquisition via zero-deposit infrastructure</th><td>Replaces upfront capital requirements with advanced, algorithmic identity verification and predictive risk modeling.</td></tr>
+<tr><th scope="row">Asset-light revenue scalability</th><td>Pure peer-to-peer intermediary capturing high-margin commission revenue without CAPEX burdens (carrying, warehousing, or depreciating inventory).</td></tr>
+<tr><th scope="row">Yield optimization for idle assets</th><td>Transforms depreciating liabilities into performing, yield-generating assets for supply-side lenders.</td></tr>
+<tr><th scope="row">End-to-end logistical orchestration</th><td>Internalized logistics layer ensuring guaranteed 2-4 hour delivery and return logistics, mitigating dispute risks and enforcing SLA compliance.</td></tr>
+<tr><th scope="row">ESG-aligned sustainable consumption</th><td>Promotes circular, shared-access consumption (&quot;Netflix economy&quot;), aligning with global ESG mandates.</td></tr>
+</tbody></table>
+</details>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" id="meddex">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">MedDex</h3>
+              <p class="p-cat">Medical education platform, iOS, Android and web</p>
+              <p class="p-status"><span>Status</span>Design, Architecting and Prototyping</p>
+            </div>
+            <div class="p-body">
+              <p class="p-purpose">Gamified clinical learning for medical students.</p>
+              <p class="p-value">Turns lecture packs and past papers into AI-generated clinical cases, multiplayer battles and spaced-repetition review, mapped automatically to each student&#x27;s degree and year.</p>
+              <table class="spec"><caption>Core technology stack</caption><tbody>
+<tr><th scope="row">Frontend framework</th><td>Flutter 3.x (Dart). Single codebase compiled natively for iOS, Android, and Web platforms.</td></tr>
+<tr><th scope="row">Backend as a service</th><td>Appwrite (v1.5+). Open-source BaaS managing user authentication, document databases, storage buckets, and real-time WebSockets.</td></tr>
+<tr><th scope="row">Primary database</th><td>MariaDB (Appwrite-managed). Relational-style collections for user profiles, RPG experience points (XP), learning blueprints, and battle item inventory.</td></tr>
+<tr><th scope="row">Vector database</th><td>Qdrant. Self-hosted in a Docker sidecar container running on the same server alongside Appwrite to store AI embeddings and perform vector search for RAG verification and question deduplication without third-party subscription costs.</td></tr>
+<tr><th scope="row">AI inference models</th><td>OpenAI GPT-4o-mini and Anthropic Claude 3 Haiku. Accessed strictly server-side via Appwrite Functions for rapid, cost-effective clinical case generation and interactive simulations.</td></tr>
+<tr><th scope="row">Serverless functions runtime</th><td>Node.js / TypeScript / Dart. Appwrite Functions handling server-side game logic, PII scrubbing, academic verification, and AI API proxying.</td></tr>
+<tr><th scope="row">Hosting and infrastructure</th><td>Self-hosted Docker Compose on a Linux Virtual Private Server (VPS) such as Hetzner, DigitalOcean, or Linode (4GB–8GB RAM). Web builds are deployed on Cloudflare Pages or Vercel.</td></tr>
+</tbody></table>
+<details class="grp"><summary>Architectural and engineering patterns</summary>
+<table class="spec"><caption>Architectural and engineering patterns</caption><tbody>
+<tr><th scope="row">Sidecar container pattern</th><td>Running Qdrant alongside Appwrite on a single VPS, keeping vector retrieval local and high-speed while eliminating expensive third-party cloud database fees.</td></tr>
+<tr><th scope="row">Event-driven serverless architecture</th><td>Utilizing Appwrite Functions triggered by authentication events, file storage uploads, or HTTP requests.</td></tr>
+<tr><th scope="row">Realtime WebSocket synchronization</th><td>Utilizing Appwrite Realtime WebSockets to broadcast document state changes across subscribed clients in room channels, enabling low-latency multiplayer game sync.</td></tr>
+<tr><th scope="row">Document-level security (DLS)</th><td>Enforcing granular Appwrite access control lists across collections so users hold exclusive write access to their own progression data.</td></tr>
+<tr><th scope="row">RAG and vector deduplication</th><td>Uploaded PDF lecture packs and past papers are extracted, chunked, and checked against local Qdrant vector indices using cosine similarity search.</td></tr>
+<tr><th scope="row">Automated PII redaction pipeline</th><td>A fast, Regex-based serverless pre-processing function that automatically scrubs Protected Health Information (PHI) and patient identifiers.</td></tr>
+<tr><th scope="row">Server-side API key proxying</th><td>Storing all OpenAI and Anthropic API keys strictly as serverless environment variables.</td></tr>
+<tr><th scope="row">Server-validated game state</th><td>Battle room actions, speed critical damage multipliers, and item effects are calculated strictly server-side.</td></tr>
+<tr><th scope="row">Spaced repetition engine (SM-2 variant)</th><td>A custom rules engine that calculates review intervals, error counts, and mastery levels to populate the Mistake Notebook.</td></tr>
+<tr><th scope="row">Automated curriculum mapping</th><td>Parsing institutional email domains upon registration to automatically route students to the appropriate degree and academic year syllabus.</td></tr>
+</tbody></table>
+</details>
+            </div>
+          </div>
+        </article>
+
+        <article class="product flip" id="syncbite">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">SyncBite</h3>
+              <p class="p-cat">B2B micro-SaaS, hospitality middleware and EPOS bridge</p>
+              <p class="p-status"><span>Status</span>Design, Master Requirements, Architecting</p>
+            </div>
+            <div class="p-body">
+              <p class="p-purpose">Cascade inventory sync and middleware for cafes and dessert parlours.</p>
+              <p class="p-value">A cloud-based API bridge connecting EPOS systems such as Square directly to Uber Eats, Just Eat and Deliveroo, preventing stockouts and cancelled-order penalties.</p>
+              <table class="spec"><caption>Core technology stack</caption><tbody>
+<tr><th scope="row">Frontend framework</th><td>Next.js hosted on Vercel. Orchestrates multi-tenant routing, distinguishing between global administrative consoles, tenant-specific operational dashboards, and dynamic consumer-facing digital storefronts.</td></tr>
+<tr><th scope="row">Backend middleware</th><td>Node.js hosted on Render. Functions as the primary API gateway, processing third-party integrations, hardware actuation commands, and high-volume transactional logic.</td></tr>
+<tr><th scope="row">Database infrastructure</th><td>Turso (libSQL). Employs a scalable database-per-tenant architecture, ensuring strict data isolation and optimized edge latency for each enterprise client.</td></tr>
+<tr><th scope="row">Object storage</th><td>Cloudflare R2. Manages all tenant-specific digital assets and media files, optimized for high-availability content delivery networks.</td></tr>
+<tr><th scope="row">Identity and access management</th><td>Auth.js. Facilitates secure, role-based access control and multi-tenant authentication protocols for administrative and operational personnel.</td></tr>
+<tr><th scope="row">Transactional communications</th><td>Resend. Manages automated programmatic dispatch for system alerts, password resets, and digital consumer receipts.</td></tr>
+</tbody></table>
+<details class="grp"><summary>Integrations and API architecture</summary>
+<table class="spec"><caption>Integrations and API architecture</caption><tbody>
+<tr><th scope="row">Multi-party payment gateway</th><td>Stripe Connect. Automates online transaction processing, dynamically calculating platform commissions and programmatically routing the remaining capital to the respective tenant&#x27;s connected financial account.</td></tr>
+<tr><th scope="row">Point-of-sale hardware API</th><td>Square Terminal API. Executes server-to-server communications to push payment payloads directly to physical, on-site transaction terminals.</td></tr>
+<tr><th scope="row">External marketplace synchronization</th><td>Third-party delivery APIs. Automates digital menu ingestion and real-time inventory adjustments across external delivery aggregator platforms.</td></tr>
+<tr><th scope="row">Automated ledger accounting</th><td>FreeAgent API. Programmatically pushes itemized daily sales data, automatically calculating regional tax splits and formatting the output for corporate accounting reconciliation.</td></tr>
+</tbody></table>
+</details>
+<details class="grp"><summary>Architectural design patterns</summary>
+<table class="spec"><caption>Architectural design patterns</caption><tbody>
+<tr><th scope="row">Database-per-tenant isolation</th><td>Rather than co-locating client data in a monolithic database, the infrastructure automatically provisions a dedicated, siloed database instance for each tenant, ensuring zero cross-tenant data leakage and strict enterprise compliance.</td></tr>
+<tr><th scope="row">Event-driven webhook architecture</th><td>The backend middleware utilizes event listeners to monitor database threshold triggers (e.g., inventory depletion) and dispatches real-time API requests to external delivery networks to update availability dynamically.</td></tr>
+<tr><th scope="row">Atomic database transactions</th><td>All inventory modifications, whether originating from digital storefronts, on-site terminals, or external marketplaces, are processed as atomic transactions to guarantee data integrity and prevent race conditions.</td></tr>
+<tr><th scope="row">Automated batch processing</th><td>Scheduled cron jobs execute during off-peak hours to aggregate daily transactional data, separate tax categories, and generate compliant financial payloads for external accounting platforms.</td></tr>
+<tr><th scope="row">Local network hardware bridging</th><td>To actuate localized physical hardware (e.g., electronic cash receptacles), the primary application transmits standardized ESC/POS commands over the local area network to peripheral devices, triggering localized electrical actuation via bridging components.</td></tr>
+</tbody></table>
+</details>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" id="drivesync">
+          <div class="split">
+            <div class="p-head">
+              <h3 class="p-name">DriveSync</h3>
+              <p class="p-cat">B2B2C SaaS and route optimization, UK ADI engine</p>
+              <p class="p-status"><span>Status</span>Design Phase</p>
+            </div>
+            <div class="p-body">
+              <p class="p-purpose">Intelligent scheduling and revenue protection for UK driving instructors.</p>
+              <p class="p-value">Replacing manual diaries with automated, postcode-aware route planning and hard-coded cancellation fee rules for UK Approved Driving Instructors.</p>
+              <table class="spec"><caption>Specification</caption><tbody>
+<tr><th scope="row">Routing</th><td>Postcode travel matrix: exact travel time between lesson locations to optimize fuel and schedule gaps</td></tr>
+<tr><th scope="row">Scheduling</th><td>DVSA test-date auto-matching against local driving test availability</td></tr>
+<tr><th scope="row">Payments</th><td>Upfront escrow via Stripe: enforces cancellation rules, secures instructor earnings</td></tr>
+</tbody></table>
             </div>
           </div>
         </article>
@@ -485,11 +610,12 @@
           <caption class="sr-only" style="position:absolute;left:-9999px">Core technology principles</caption>
           <thead><tr><th>Principle</th><th>Description</th><th>Implementation</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request is verified. Nothing is assumed, and security is part of the architecture rather than a layer on top.</td><td class="m">Row-level security, KYC gating, escrow-first flows</td></tr>
-            <tr><th scope="row">Edge computing and offline-first data</th><td>Local SQLite caching paired with edge functions ensures high availability across unstable networks.</td><td class="m">SQLite, edge functions</td></tr>
-            <tr><th scope="row">Biometric and identity APIs</th><td>Deep integration with AI verification providers and official identity databases.</td><td class="m">Shufti Pro, NADRA, passports</td></tr>
-            <tr><th scope="row">Automated escrow and payments</th><td>Multi-currency payment rails with automated deposit holds, split payouts and automated dispute adjudication.</td><td class="m">SafePay, Stripe, TrueLayer, GoCardless</td></tr>
-            <tr><th scope="row">Real-time webhook engines</th><td>Sub-second inventory and booking synchronization between till systems and global delivery aggregators.</td><td class="m">Webhooks, API middleware</td></tr>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request is verified. Nothing is assumed, and security is part of the architecture rather than a layer on top.</td><td class="m">Document-level security, RBAC, database-per-tenant isolation</td></tr>
+            <tr><th scope="row">Edge computing and distributed data</th><td>Tenant-isolated libSQL databases, serverless functions and CDN-delivered assets keep platforms fast across unstable networks.</td><td class="m">Turso, Cloudflare R2, Vercel, Appwrite Functions</td></tr>
+            <tr><th scope="row">Identity and verification APIs</th><td>Third-party KYC/AML and identity providers run real-time checks before any asset changes hands.</td><td class="m">Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
+            <tr><th scope="row">Automated escrow and payments</th><td>Multi-party payment routing with automated deposit holds, commission deduction, split payouts and reconciliation.</td><td class="m">Stripe Connect, Razorpay Route, TrueLayer</td></tr>
+            <tr><th scope="row">Real-time webhook engines</th><td>Sub-second inventory and booking synchronization between till systems and global delivery aggregators.</td><td class="m">Webhooks, Square Terminal API, FreeAgent API</td></tr>
+            <tr><th scope="row">AI inference and retrieval</th><td>Server-side LLM inference and vector search for case generation and triage. API keys never leave the backend.</td><td class="m">Anthropic Claude, OpenAI, Qdrant</td></tr>
           </tbody>
         </table>
 
@@ -498,9 +624,11 @@
           <table class="grid-table" style="margin-top:0">
             <caption class="sr-only" style="position:absolute;left:-9999px">Technology stack</caption>
             <tbody>
-              <tr><th scope="row">Languages and frameworks</th><td class="m">TypeScript, React, TanStack Start, TanStack Router, TanStack Query, Next.js, Vite, Tailwind CSS</td></tr>
-              <tr><th scope="row">Data and backend</th><td class="m">Supabase, PostgreSQL, Supabase Auth, Edge Functions, Row-Level Security, SQLite</td></tr>
-              <tr><th scope="row">Identity and payments</th><td class="m">Shufti Pro, NADRA verification, SafePay, Stripe, TrueLayer, GoCardless, TPL Trakker</td></tr>
+              <tr><th scope="row">Languages and frameworks</th><td class="m">TypeScript, Dart, Node.js, Python, React, Next.js, React Native, Flutter, Tailwind CSS, Framer Motion</td></tr>
+              <tr><th scope="row">Data and backend</th><td class="m">PostgreSQL, Neon, MongoDB, Turso (libSQL), MariaDB, Appwrite, Drizzle ORM, GraphQL, Elasticsearch, Algolia, Qdrant</td></tr>
+              <tr><th scope="row">Identity and payments</th><td class="m">Onfido, Veriff, Digilocker, Clerk, Auth.js, Stripe Connect, Razorpay Route, TrueLayer, Square Terminal API, FreeAgent</td></tr>
+              <tr><th scope="row">Infrastructure and delivery</th><td class="m">Vercel, Render, Cloudflare R2, Cloudflare Pages, Docker Compose, Resend, UploadThing</td></tr>
+              <tr><th scope="row">AI</th><td class="m">Anthropic Claude, OpenAI</td></tr>
               <tr><th scope="row">Engineering and quality</th><td class="m">GitHub, Vitest, Testing Library, Zod, ESLint, Prettier</td></tr>
             </tbody>
           </table>
