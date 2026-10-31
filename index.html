@@ -177,6 +177,9 @@
     .spec .sub:first-child th { border-top: 0; padding-top: .25rem; }
     .spec.prose td { font-family: var(--sans); font-size: .98rem; line-height: 1.5; }
     .spec.prose th { font-family: var(--sans); font-weight: 700; font-size: .98rem; color: var(--ink); width: 36%; }
+    .designer { margin-top: 2.25rem; padding: 1.5rem 0 0; border-top: 1px solid var(--ink); max-width: 38rem; }
+    .designer-lead { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.2; }
+    .designer p:last-child { margin: 1rem 0 0; font-size: .98rem; }
     details.grp { margin-top: 1.25rem; border-top: 1px solid var(--ink); }
     details.grp > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; font-family: var(--mono); font-size: .8125rem; font-weight: 500; }
     details.grp > summary::-webkit-details-marker { display: none; }
@@ -221,54 +224,9 @@
     /* Contact */
     .contact .h-serif { font-size: clamp(2.6rem, 8vw, 7rem); line-height: .96; max-width: 12em; }
     .contact .sub { margin: 1.75rem 0 0; max-width: 32rem; font-size: 1.1rem; }
+    .mail { display: inline-block; margin-top: 2.25rem; font-family: var(--mono); font-size: clamp(1rem, 2.6vw, 1.6rem); color: var(--mint); text-decoration: none; border-bottom: 1px solid var(--mint); padding-bottom: .3rem; word-break: break-all; }
+    .mail:hover { color: var(--white); border-bottom-color: var(--white); }
     .loc { margin: 1.5rem 0 0; font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
-    .contact-grid { margin-top: clamp(2.5rem, 5vw, 4rem); row-gap: 2.5rem; align-items: start; }
-    .contact-grid .c-side { grid-column: 1 / 6; }
-    .contact-grid .c-form { grid-column: 7 / 13; }
-    .contact-grid .c-side .sub { margin-top: 0; }
-    @media (max-width: 960px) { .contact-grid .c-side, .contact-grid .c-form { grid-column: 1 / -1; } }
-
-    /* Enquiry form */
-    .enquiry { display: grid; gap: 1.5rem; }
-    .enquiry fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-    .enquiry label, .enquiry legend { display: block; padding: 0; margin: 0 0 .5rem; font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
-    .enquiry .opt { color: rgba(255, 255, 255, .6); }
-    .enquiry input[type="text"], .enquiry input[type="email"], .enquiry input[type="tel"], .enquiry select, .enquiry textarea {
-      display: block; width: 100%; font: inherit; font-size: 1rem; color: var(--white); background: transparent;
-      border: 1px solid var(--line-d); border-radius: 0; padding: .85rem 1rem; -webkit-appearance: none; appearance: none;
-    }
-    .enquiry textarea { min-height: 9rem; resize: vertical; line-height: 1.5; }
-    .enquiry select { padding-right: 2.75rem; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2300E5A3' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
-    .enquiry select option { background: var(--navy); color: var(--white); }
-    .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--mint); box-shadow: 0 0 0 1px var(--mint); }
-    .enquiry [aria-invalid="true"] { border-color: #FF8A8A; }
-    .enquiry ::placeholder { color: rgba(255, 255, 255, .45); }
-    .enquiry .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    @media (max-width: 640px) { .enquiry .two { grid-template-columns: 1fr; } }
-    .enquiry .hint { margin: .5rem 0 0; font-size: .875rem; color: rgba(255, 255, 255, .7); }
-    .enquiry .err { margin: .5rem 0 0; font-size: .875rem; color: #FF8A8A; }
-    .enquiry .err:empty { display: none; }
-    .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-d); }
-    .seg .opt-box { position: relative; display: flex; margin: 0; }
-    .seg .opt-box + .opt-box { border-left: 1px solid var(--line-d); }
-    .seg input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
-    .seg .opt-box span { flex: 1; display: flex; align-items: center; justify-content: center; padding: .85rem 1rem; text-align: center; font-family: var(--sans); font-size: .95rem; font-weight: 700; color: var(--white); }
-    .seg input:checked + span { background: var(--mint); color: var(--navy); }
-    .seg input:focus-visible + span { outline: 2px solid var(--mint); outline-offset: -4px; }
-    .seg.bad { border-color: #FF8A8A; }
-    .enquiry .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-    .enquiry .send { justify-self: start; font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; color: var(--navy); background: var(--mint); border: 1px solid var(--mint); padding: .95rem 1.75rem; }
-    .enquiry .send:hover { background: var(--white); border-color: var(--white); }
-    .enquiry .send[disabled] { opacity: .6; cursor: progress; }
-    .enquiry .fine { margin: 0; font-size: .875rem; color: rgba(255, 255, 255, .7); }
-    .enquiry .status { margin: 0; font-size: .95rem; }
-    .enquiry .status:empty { display: none; }
-    .enquiry .status.bad { color: #FF8A8A; }
-    .enquiry .status.bad a { color: inherit; }
-    .thanks { border: 1px solid var(--mint); padding: clamp(1.5rem, 3vw, 2.25rem); }
-    .thanks:focus { outline: none; }
-    .thanks .h-sans { margin: 0 0 .75rem; color: var(--mint); }
-    .thanks p { margin: 0; max-width: 30rem; }
     .foot { border-top: 1px solid var(--line-d); }
     .foot .frame { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; padding: 1.4rem var(--pad); font-family: var(--mono); font-size: .8125rem; color: var(--teal); }
     .foot ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
@@ -459,10 +417,10 @@
           <caption>Foundation layers</caption>
           <thead class="sr-only" style="position:absolute;left:-9999px"><tr><th>Layer</th><th>Function</th><th>Components</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Identity verification</th><td>Identity checks and role-based access before an asset changes hands.</td><td>Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
-            <tr><th scope="row">Payments and escrow</th><td>Split payments, escrow holds, automated commission and reconciliation.</td><td>Stripe Connect, Razorpay Route, TrueLayer, Square Terminal API</td></tr>
-            <tr><th scope="row">Data and API routing</th><td>Tenant-isolated databases, serverless functions and live synchronization.</td><td>PostgreSQL, Turso, Appwrite, Qdrant, webhooks</td></tr>
-            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request verified; nothing assumed.</td><td>Document-level security, database-per-tenant isolation, server-side key proxying</td></tr>
+            <tr><th scope="row">Identity verification</th><td>Verified identity and role-based access.</td><td>Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
+            <tr><th scope="row">Payments and escrow</th><td>Secure payments and settlement.</td><td>Stripe Connect, Razorpay Route, TrueLayer, Square Terminal API</td></tr>
+            <tr><th scope="row">Data and API routing</th><td>Isolated data stores, serverless functions and live synchronization.</td><td>PostgreSQL, Turso, Appwrite, Qdrant</td></tr>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request verified; nothing assumed.</td><td>Document-level security, RBAC</td></tr>
           </tbody>
         </table>
       </div>
@@ -486,39 +444,28 @@
             <div class="p-body">
               <p class="p-purpose">Premium zero-trust car marketplace for buying and renting across the UK.</p>
               <p class="p-value">Clean-title cars only, with buyer funds held in escrow until the keys change hands. Verified before listing. Protected until handover. Covered on the road.</p>
+              
               <table class="spec"><caption>Enterprise technology stack</caption><tbody>
-<tr class="sub"><th colspan="2" scope="colgroup">Frontend orchestration and presentation layer</th></tr>
-<tr><th scope="row">Framework</th><td>Next.js (App Router). Deployed for asynchronous server-side rendering, optimized state hydration, and distributed edge delivery.</td></tr>
-<tr><th scope="row">Styling and kinematics</th><td>Tailwind CSS with Framer Motion. A scalable, utility-first DOM styling matrix paired with fluid, hardware-accelerated state transitions.</td></tr>
-<tr class="sub"><th colspan="2" scope="colgroup">Backend persistence and data abstraction layer</th></tr>
-<tr><th scope="row">Database topology</th><td>Neon PostgreSQL. A serverless relational data store enabling elastic compute scaling and high-availability cross-region replication.</td></tr>
-<tr><th scope="row">Data modeling</th><td>Drizzle ORM. Enforcing rigid, type-safe bidirectional object-relational mapping.</td></tr>
-<tr><th scope="row">Blob storage</th><td>UploadThing. Handling asynchronous, multipart binary data ingestion.</td></tr>
-<tr class="sub"><th colspan="2" scope="colgroup">IAM, security and cognitive inference</th></tr>
-<tr><th scope="row">Identity and access management</th><td>Clerk Auth. Facilitating role-based access control (RBAC), multi-tenant provisioning, and cryptographic multi-factor authentication.</td></tr>
-<tr><th scope="row">Cognitive processing</th><td>Anthropic API (Claude). Integrating an advanced Large Language Model (LLM) inference engine to run predictive heuristics and automated triage workflows.</td></tr>
-<tr class="sub"><th colspan="2" scope="colgroup">Financial clearing and external telemetry</th></tr>
-<tr><th scope="row">Clearing hub</th><td>Stripe / TrueLayer. Executing multi-party fiat routing, automated reconciliation, and synchronous ledger updates via Open Banking protocols.</td></tr>
-<tr><th scope="row">Statutory and vendor ingestion pipes</th><td>Consuming RESTful endpoints from sovereign regulatory bodies (DVLA/DVSA equivalents) and third-party aggregate vendors.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Frontend</th></tr>
+<tr><th scope="row">Framework</th><td>Next.js (App Router), server-side rendering and edge delivery.</td></tr>
+<tr><th scope="row">Styling</th><td>Tailwind CSS with Framer Motion.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Backend and data</th></tr>
+<tr><th scope="row">Database</th><td>Neon PostgreSQL.</td></tr>
+<tr><th scope="row">Data modeling</th><td>Drizzle ORM.</td></tr>
+<tr><th scope="row">File storage</th><td>UploadThing.</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Identity and intelligence</th></tr>
+<tr><th scope="row">Identity and access</th><td>Clerk Auth, role-based access control.</td></tr>
+<tr><th scope="row">AI</th><td>Anthropic API (Claude).</td></tr>
+<tr class="sub"><th colspan="2" scope="colgroup">Payments and data services</th></tr>
+<tr><th scope="row">Payments</th><td>Stripe / TrueLayer.</td></tr>
+<tr><th scope="row">External data</th><td>REST integrations with regulatory and third-party services.</td></tr>
 </tbody></table>
-<details class="grp"><summary>Architectural pattern: Feature-Sliced Design</summary>
-<p class="spec-note">To prevent monolithic coupling and technical debt within a multi-vertical ecosystem, the codebase enforces a Feature-Sliced Design (FSD) paradigm. This strictly isolates business domains and enforces unidirectional dependency graphing.</p><pre class="tree" tabindex="0" aria-label="Monorepo directory topology"><code>src/
-├─ shared/         Core infrastructure primitives (domain-agnostic)
-│  ├─ api/         Relational schema definitions, stateless DB clients
-│  ├─ ui/          Atomic design components
-│  └─ lib/         Cryptographic helpers, deterministic date formatters, regex sanitizers
-├─ entities/       Domain object abstractions
-│  ├─ asset/            Standardized inventory presentation components
-│  └─ user-profile/     Federated identity badges and reputation metrics
-├─ features/       Isolated business logic and workflows; contract exposed via index.ts
-│  ├─ transactional-custody-gateway/   Cryptographic title transfer, multi-party settlement logic
-│  ├─ predictive-asset-simulation/     External API polling to render dynamic optimizations
-│  ├─ automated-diagnostic-triage/     Cognitive visual processing routes operational anomalies
-│  └─ provenance-validation-matrix/    Historical archival data cross-referenced with regulatory databases
-└─ app/            Route orchestration layer: stateless layout composers
-   ├─ (discovery)/page.tsx                         Primary top-of-funnel asset aggregation feed
-   ├─ (settlement)/checkout/page.tsx               Secure enclave for final financial execution
-   └─ (commercial-dashboard)/dashboard/page.tsx    B2B portal for dynamic quota management</code></pre>
+<details class="grp"><summary>Architectural pattern</summary>
+<p class="spec-note">The codebase follows a Feature-Sliced Design paradigm: business domains are isolated and dependencies flow in one direction, preventing monolithic coupling as the platform grows.</p><pre class="tree" tabindex="0" aria-label="Codebase layers"><code>src/
+├─ shared/      Core infrastructure primitives
+├─ entities/    Domain object abstractions
+├─ features/    Isolated business modules, each exposing a single public contract
+└─ app/         Route orchestration layer</code></pre>
 </details>
             </div>
           </div>
@@ -528,29 +475,21 @@
           <div class="split">
             <div class="p-head">
               <h3 class="p-name">RentKar</h3>
-              <p class="p-cat">Cross-border mobility platform, Islamabad and AJK corridor</p>
+              <p class="p-cat">Cross-border mobility platform</p>
               <p class="p-status"><span>Status</span>Development and testing</p>
             </div>
             <div class="p-body">
               <p class="p-purpose">Premium zero-trust mobility and asset security marketplace.</p>
-              <p class="p-value">A peer-to-peer rental marketplace that replaces upfront deposits with algorithmic identity verification, and handles delivery and return logistics end to end.</p>
-              <table class="spec"><caption>Core tech stack architecture</caption><tbody>
-<tr><th scope="row">Front-end framework</th><td>React Native/Flutter (iOS/Android) for seamless native experience; React.js/Next.js for responsive, SEO-optimized web portal.</td></tr>
-<tr><th scope="row">Backend and API layer</th><td>Scalable microservices via Node.js (Express/NestJS) or Python (Django/FastAPI). Integrates a GraphQL API for optimized data querying on complex item listings.</td></tr>
-<tr><th scope="row">Database infrastructure</th><td>Hybrid topology. Relational DB (PostgreSQL) for structured transactional data (user profiles, ledgers, escrow); NoSQL DB (MongoDB) for unstructured, highly variable listing attributes.</td></tr>
-<tr><th scope="row">Search and discovery</th><td>Elasticsearch or Algolia driving typo-tolerant, location-based filtering and real-time availability indexing.</td></tr>
-<tr><th scope="row">Verification and security</th><td>Third-party KYC/AML integration (Onfido, Veriff, Digilocker) executing real-time identity and creditworthiness checks for zero-deposit risk mitigation.</td></tr>
-<tr><th scope="row">Payment and escrow gateway</th><td>Stripe Connect / Razorpay Route for compliant, split-payment routing and automated commission deduction.</td></tr>
+              <p class="p-value">A peer-to-peer rental marketplace built on verified identity and trusted handover.</p>
+              
+              <table class="spec"><caption>Core technology stack</caption><tbody>
+<tr><th scope="row">Front end</th><td>React Native or Flutter for iOS and Android; React.js / Next.js for web.</td></tr>
+<tr><th scope="row">Backend</th><td>Node.js (Express / NestJS) or Python (Django / FastAPI), with a GraphQL API.</td></tr>
+<tr><th scope="row">Databases</th><td>PostgreSQL and MongoDB.</td></tr>
+<tr><th scope="row">Search</th><td>Elasticsearch or Algolia.</td></tr>
+<tr><th scope="row">Identity</th><td>Onfido, Veriff, Digilocker.</td></tr>
+<tr><th scope="row">Payments</th><td>Stripe Connect / Razorpay Route.</td></tr>
 </tbody></table>
-<details class="grp"><summary>Key value propositions</summary>
-<table class="spec prose"><caption>Key value propositions</caption><tbody>
-<tr><th scope="row">Frictionless acquisition via zero-deposit infrastructure</th><td>Replaces upfront capital requirements with advanced, algorithmic identity verification and predictive risk modeling.</td></tr>
-<tr><th scope="row">Asset-light revenue scalability</th><td>Pure peer-to-peer intermediary capturing high-margin commission revenue without CAPEX burdens (carrying, warehousing, or depreciating inventory).</td></tr>
-<tr><th scope="row">Yield optimization for idle assets</th><td>Transforms depreciating liabilities into performing, yield-generating assets for supply-side lenders.</td></tr>
-<tr><th scope="row">End-to-end logistical orchestration</th><td>Internalized logistics layer ensuring guaranteed 2-4 hour delivery and return logistics, mitigating dispute risks and enforcing SLA compliance.</td></tr>
-<tr><th scope="row">ESG-aligned sustainable consumption</th><td>Promotes circular, shared-access consumption (&quot;Netflix economy&quot;), aligning with global ESG mandates.</td></tr>
-</tbody></table>
-</details>
             </div>
           </div>
         </article>
@@ -559,35 +498,22 @@
           <div class="split">
             <div class="p-head">
               <h3 class="p-name">MedDex</h3>
-              <p class="p-cat">Medical education platform, iOS, Android and web</p>
+              <p class="p-cat">Medical and dental education platform</p>
               <p class="p-status"><span>Status</span>Design, Architecting and Prototyping</p>
             </div>
             <div class="p-body">
-              <p class="p-purpose">Gamified clinical learning for medical students.</p>
-              <p class="p-value">Turns lecture packs and past papers into AI-generated clinical cases, multiplayer battles and spaced-repetition review, mapped automatically to each student&#x27;s degree and year.</p>
+              <p class="p-purpose">Smarter revision for medical and dental students.</p>
+              <p class="p-value">A study platform designed with students to take the fatigue out of clinical exam revision.</p>
+              <div class="designer"><p class="designer-lead">MedDex wasn’t designed in a vacuum—it was built directly on the wards and in the clinics.</p><p>Spearheaded by our Lead Product Designer, a 4th-year student who understands the exact pressures of modern clinical exams, the entire platform was engineered to solve real-world revision fatigue. By working side-by-side with fellow dental and medical students and personally leading our rigorous beta testing phase, he designed every single feature from the ground up to match how students actually study.</p></div>
               <table class="spec"><caption>Core technology stack</caption><tbody>
-<tr><th scope="row">Frontend framework</th><td>Flutter 3.x (Dart). Single codebase compiled natively for iOS, Android, and Web platforms.</td></tr>
-<tr><th scope="row">Backend as a service</th><td>Appwrite (v1.5+). Open-source BaaS managing user authentication, document databases, storage buckets, and real-time WebSockets.</td></tr>
-<tr><th scope="row">Primary database</th><td>MariaDB (Appwrite-managed). Relational-style collections for user profiles, RPG experience points (XP), learning blueprints, and battle item inventory.</td></tr>
-<tr><th scope="row">Vector database</th><td>Qdrant. Self-hosted in a Docker sidecar container running on the same server alongside Appwrite to store AI embeddings and perform vector search for RAG verification and question deduplication without third-party subscription costs.</td></tr>
-<tr><th scope="row">AI inference models</th><td>OpenAI GPT-4o-mini and Anthropic Claude 3 Haiku. Accessed strictly server-side via Appwrite Functions for rapid, cost-effective clinical case generation and interactive simulations.</td></tr>
-<tr><th scope="row">Serverless functions runtime</th><td>Node.js / TypeScript / Dart. Appwrite Functions handling server-side game logic, PII scrubbing, academic verification, and AI API proxying.</td></tr>
-<tr><th scope="row">Hosting and infrastructure</th><td>Self-hosted Docker Compose on a Linux Virtual Private Server (VPS) such as Hetzner, DigitalOcean, or Linode (4GB–8GB RAM). Web builds are deployed on Cloudflare Pages or Vercel.</td></tr>
+<tr><th scope="row">Frontend</th><td>Flutter 3.x (Dart), one codebase for iOS, Android and web.</td></tr>
+<tr><th scope="row">Backend</th><td>Appwrite (v1.5+), open-source backend as a service.</td></tr>
+<tr><th scope="row">Database</th><td>MariaDB (Appwrite-managed).</td></tr>
+<tr><th scope="row">Vector search</th><td>Qdrant, self-hosted.</td></tr>
+<tr><th scope="row">AI</th><td>OpenAI and Anthropic models, accessed server-side only.</td></tr>
+<tr><th scope="row">Functions</th><td>Node.js / TypeScript / Dart serverless functions.</td></tr>
+<tr><th scope="row">Hosting</th><td>Docker Compose on a Linux VPS; web builds on Cloudflare Pages or Vercel.</td></tr>
 </tbody></table>
-<details class="grp"><summary>Architectural and engineering patterns</summary>
-<table class="spec"><caption>Architectural and engineering patterns</caption><tbody>
-<tr><th scope="row">Sidecar container pattern</th><td>Running Qdrant alongside Appwrite on a single VPS, keeping vector retrieval local and high-speed while eliminating expensive third-party cloud database fees.</td></tr>
-<tr><th scope="row">Event-driven serverless architecture</th><td>Utilizing Appwrite Functions triggered by authentication events, file storage uploads, or HTTP requests.</td></tr>
-<tr><th scope="row">Realtime WebSocket synchronization</th><td>Utilizing Appwrite Realtime WebSockets to broadcast document state changes across subscribed clients in room channels, enabling low-latency multiplayer game sync.</td></tr>
-<tr><th scope="row">Document-level security (DLS)</th><td>Enforcing granular Appwrite access control lists across collections so users hold exclusive write access to their own progression data.</td></tr>
-<tr><th scope="row">RAG and vector deduplication</th><td>Uploaded PDF lecture packs and past papers are extracted, chunked, and checked against local Qdrant vector indices using cosine similarity search.</td></tr>
-<tr><th scope="row">Automated PII redaction pipeline</th><td>A fast, Regex-based serverless pre-processing function that automatically scrubs Protected Health Information (PHI) and patient identifiers.</td></tr>
-<tr><th scope="row">Server-side API key proxying</th><td>Storing all OpenAI and Anthropic API keys strictly as serverless environment variables.</td></tr>
-<tr><th scope="row">Server-validated game state</th><td>Battle room actions, speed critical damage multipliers, and item effects are calculated strictly server-side.</td></tr>
-<tr><th scope="row">Spaced repetition engine (SM-2 variant)</th><td>A custom rules engine that calculates review intervals, error counts, and mastery levels to populate the Mistake Notebook.</td></tr>
-<tr><th scope="row">Automated curriculum mapping</th><td>Parsing institutional email domains upon registration to automatically route students to the appropriate degree and academic year syllabus.</td></tr>
-</tbody></table>
-</details>
             </div>
           </div>
         </article>
@@ -596,37 +522,25 @@
           <div class="split">
             <div class="p-head">
               <h3 class="p-name">SyncBite</h3>
-              <p class="p-cat">B2B micro-SaaS, hospitality middleware and EPOS bridge</p>
+              <p class="p-cat">B2B micro-SaaS, hospitality middleware</p>
               <p class="p-status"><span>Status</span>Design, Master Requirements, Architecting</p>
             </div>
             <div class="p-body">
-              <p class="p-purpose">Cascade inventory sync and middleware for cafes and dessert parlours.</p>
-              <p class="p-value">A cloud-based API bridge connecting EPOS systems such as Square directly to Uber Eats, Just Eat and Deliveroo, preventing stockouts and cancelled-order penalties.</p>
+              <p class="p-purpose">Intelligent inventory sync and middleware for cafes and dessert parlours.</p>
+              <p class="p-value">A cloud platform connecting in-store systems to online ordering channels, so availability stays accurate in real time.</p>
+              
               <table class="spec"><caption>Core technology stack</caption><tbody>
-<tr><th scope="row">Frontend framework</th><td>Next.js hosted on Vercel. Orchestrates multi-tenant routing, distinguishing between global administrative consoles, tenant-specific operational dashboards, and dynamic consumer-facing digital storefronts.</td></tr>
-<tr><th scope="row">Backend middleware</th><td>Node.js hosted on Render. Functions as the primary API gateway, processing third-party integrations, hardware actuation commands, and high-volume transactional logic.</td></tr>
-<tr><th scope="row">Database infrastructure</th><td>Turso (libSQL). Employs a scalable database-per-tenant architecture, ensuring strict data isolation and optimized edge latency for each enterprise client.</td></tr>
-<tr><th scope="row">Object storage</th><td>Cloudflare R2. Manages all tenant-specific digital assets and media files, optimized for high-availability content delivery networks.</td></tr>
-<tr><th scope="row">Identity and access management</th><td>Auth.js. Facilitates secure, role-based access control and multi-tenant authentication protocols for administrative and operational personnel.</td></tr>
-<tr><th scope="row">Transactional communications</th><td>Resend. Manages automated programmatic dispatch for system alerts, password resets, and digital consumer receipts.</td></tr>
+<tr><th scope="row">Frontend</th><td>Next.js on Vercel.</td></tr>
+<tr><th scope="row">Backend</th><td>Node.js on Render.</td></tr>
+<tr><th scope="row">Database</th><td>Turso (libSQL).</td></tr>
+<tr><th scope="row">Object storage</th><td>Cloudflare R2.</td></tr>
+<tr><th scope="row">Identity</th><td>Auth.js.</td></tr>
+<tr><th scope="row">Email</th><td>Resend.</td></tr>
+<tr><th scope="row">Payments</th><td>Stripe Connect.</td></tr>
+<tr><th scope="row">Point of sale</th><td>Square Terminal API.</td></tr>
+<tr><th scope="row">Accounting</th><td>FreeAgent API.</td></tr>
+<tr><th scope="row">Marketplaces</th><td>Third-party delivery platform APIs.</td></tr>
 </tbody></table>
-<details class="grp"><summary>Integrations and API architecture</summary>
-<table class="spec"><caption>Integrations and API architecture</caption><tbody>
-<tr><th scope="row">Multi-party payment gateway</th><td>Stripe Connect. Automates online transaction processing, dynamically calculating platform commissions and programmatically routing the remaining capital to the respective tenant&#x27;s connected financial account.</td></tr>
-<tr><th scope="row">Point-of-sale hardware API</th><td>Square Terminal API. Executes server-to-server communications to push payment payloads directly to physical, on-site transaction terminals.</td></tr>
-<tr><th scope="row">External marketplace synchronization</th><td>Third-party delivery APIs. Automates digital menu ingestion and real-time inventory adjustments across external delivery aggregator platforms.</td></tr>
-<tr><th scope="row">Automated ledger accounting</th><td>FreeAgent API. Programmatically pushes itemized daily sales data, automatically calculating regional tax splits and formatting the output for corporate accounting reconciliation.</td></tr>
-</tbody></table>
-</details>
-<details class="grp"><summary>Architectural design patterns</summary>
-<table class="spec"><caption>Architectural design patterns</caption><tbody>
-<tr><th scope="row">Database-per-tenant isolation</th><td>Rather than co-locating client data in a monolithic database, the infrastructure automatically provisions a dedicated, siloed database instance for each tenant, ensuring zero cross-tenant data leakage and strict enterprise compliance.</td></tr>
-<tr><th scope="row">Event-driven webhook architecture</th><td>The backend middleware utilizes event listeners to monitor database threshold triggers (e.g., inventory depletion) and dispatches real-time API requests to external delivery networks to update availability dynamically.</td></tr>
-<tr><th scope="row">Atomic database transactions</th><td>All inventory modifications, whether originating from digital storefronts, on-site terminals, or external marketplaces, are processed as atomic transactions to guarantee data integrity and prevent race conditions.</td></tr>
-<tr><th scope="row">Automated batch processing</th><td>Scheduled cron jobs execute during off-peak hours to aggregate daily transactional data, separate tax categories, and generate compliant financial payloads for external accounting platforms.</td></tr>
-<tr><th scope="row">Local network hardware bridging</th><td>To actuate localized physical hardware (e.g., electronic cash receptacles), the primary application transmits standardized ESC/POS commands over the local area network to peripheral devices, triggering localized electrical actuation via bridging components.</td></tr>
-</tbody></table>
-</details>
             </div>
           </div>
         </article>
@@ -635,16 +549,16 @@
           <div class="split">
             <div class="p-head">
               <h3 class="p-name">DriveSync</h3>
-              <p class="p-cat">B2B2C SaaS and route optimization, UK ADI engine</p>
+              <p class="p-cat">B2B2C SaaS for UK driving instructors</p>
               <p class="p-status"><span>Status</span>Design Phase</p>
             </div>
             <div class="p-body">
               <p class="p-purpose">Intelligent scheduling and revenue protection for UK driving instructors.</p>
-              <p class="p-value">Replacing manual diaries with automated, postcode-aware route planning and hard-coded cancellation fee rules for UK Approved Driving Instructors.</p>
-              <table class="spec"><caption>Specification</caption><tbody>
-<tr><th scope="row">Routing</th><td>Postcode travel matrix: exact travel time between lesson locations to optimize fuel and schedule gaps</td></tr>
-<tr><th scope="row">Scheduling</th><td>DVSA test-date auto-matching against local driving test availability</td></tr>
-<tr><th scope="row">Payments</th><td>Upfront escrow via Stripe: enforces cancellation rules, secures instructor earnings</td></tr>
+              <p class="p-value">Replacing manual diaries with intelligent scheduling built for UK Approved Driving Instructors.</p>
+              
+              <table class="spec"><caption>Core technology stack</caption><tbody>
+<tr><th scope="row">Platform</th><td>B2B2C SaaS.</td></tr>
+<tr><th scope="row">Payments</th><td>Stripe.</td></tr>
 </tbody></table>
             </div>
           </div>
@@ -662,12 +576,12 @@
           <caption class="sr-only" style="position:absolute;left:-9999px">Core technology principles</caption>
           <thead><tr><th>Principle</th><th>Description</th><th>Implementation</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request is verified. Nothing is assumed, and security is part of the architecture rather than a layer on top.</td><td class="m">Document-level security, RBAC, database-per-tenant isolation</td></tr>
-            <tr><th scope="row">Edge computing and distributed data</th><td>Tenant-isolated libSQL databases, serverless functions and CDN-delivered assets keep platforms fast across unstable networks.</td><td class="m">Turso, Cloudflare R2, Vercel, Appwrite Functions</td></tr>
-            <tr><th scope="row">Identity and verification APIs</th><td>Third-party KYC/AML and identity providers run real-time checks before any asset changes hands.</td><td class="m">Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
-            <tr><th scope="row">Automated escrow and payments</th><td>Multi-party payment routing with automated deposit holds, commission deduction, split payouts and reconciliation.</td><td class="m">Stripe Connect, Razorpay Route, TrueLayer</td></tr>
-            <tr><th scope="row">Real-time webhook engines</th><td>Sub-second inventory and booking synchronization between till systems and global delivery aggregators.</td><td class="m">Webhooks, Square Terminal API, FreeAgent API</td></tr>
-            <tr><th scope="row">AI inference and retrieval</th><td>Server-side LLM inference and vector search for case generation and triage. API keys never leave the backend.</td><td class="m">Anthropic Claude, OpenAI, Qdrant</td></tr>
+            <tr><th scope="row">Zero-trust security</th><td>Every identity, payment and request is verified. Security is part of the architecture rather than a layer on top.</td><td class="m">Document-level security, RBAC</td></tr>
+            <tr><th scope="row">Edge computing and distributed data</th><td>Edge-ready data and serverless functions keep platforms fast and available.</td><td class="m">Turso, Cloudflare R2, Vercel, Appwrite Functions</td></tr>
+            <tr><th scope="row">Identity and verification APIs</th><td>Identity and verification providers integrated at the platform layer.</td><td class="m">Onfido, Veriff, Digilocker, Clerk, Auth.js</td></tr>
+            <tr><th scope="row">Automated escrow and payments</th><td>Secure payment rails for compliant settlement.</td><td class="m">Stripe Connect, Razorpay Route, TrueLayer</td></tr>
+            <tr><th scope="row">Real-time engines</th><td>Event-driven synchronization between systems.</td><td class="m">Webhooks, Square Terminal API, FreeAgent API</td></tr>
+            <tr><th scope="row">AI inference and retrieval</th><td>Server-side AI with credentials kept strictly on the backend.</td><td class="m">Anthropic Claude, OpenAI, Qdrant</td></tr>
           </tbody>
         </table>
 
@@ -709,76 +623,9 @@
     <section class="contact dark" id="contact">
       <div class="frame inner sec-pad">
         <h2 class="h-serif">Let’s build something remarkable</h2>
-        <div class="split contact-grid">
-          <div class="c-side">
-            <p class="sub">Interested in partnering, investing, or piloting our platforms? Tell us a little about your enquiry and our technology team will reply.</p>
-            <p class="loc">United Kingdom</p>
-          </div>
-          <div class="c-form">
-            <form class="enquiry" id="enquiry" novalidate>
-              <fieldset>
-                <legend id="kindLabel">I am enquiring as</legend>
-                <div class="seg" id="kindBox" role="radiogroup" aria-labelledby="kindLabel" aria-describedby="kindErr">
-                  <label class="opt-box"><input type="radio" name="kind" value="private" /><span>Private individual</span></label>
-                  <label class="opt-box"><input type="radio" name="kind" value="business" /><span>Business or institution</span></label>
-                </div>
-                <p class="err" id="kindErr"></p>
-              </fieldset>
-
-              <div>
-                <label for="nature">Nature of enquiry</label>
-                <select id="nature" name="nature" required aria-describedby="natureErr">
-                  <option value="" selected disabled>Choose one</option>
-                  <option value="investing">Investing</option>
-                  <option value="piloting">Piloting a platform</option>
-                  <option value="partnering">Partnering</option>
-                  <option value="other">Something else</option>
-                </select>
-                <p class="err" id="natureErr"></p>
-              </div>
-
-              <div id="companyRow" hidden>
-                <label for="company">Company or institution name</label>
-                <input type="text" id="company" name="company" autocomplete="organization" maxlength="120" aria-describedby="companyErr" />
-                <p class="err" id="companyErr"></p>
-              </div>
-
-              <div>
-                <label for="name">Contact name</label>
-                <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required aria-describedby="nameErr" />
-                <p class="err" id="nameErr"></p>
-              </div>
-
-              <div class="two">
-                <div>
-                  <label for="email">Email <span class="opt">(email and/or phone)</span></label>
-                  <input type="email" id="email" name="email" autocomplete="email" maxlength="254" aria-describedby="emailErr" />
-                  <p class="err" id="emailErr"></p>
-                </div>
-                <div>
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30" aria-describedby="phoneErr" />
-                  <p class="err" id="phoneErr"></p>
-                </div>
-              </div>
-
-              <div>
-                <label for="message">Brief description</label>
-                <textarea id="message" name="message" maxlength="1500" required aria-describedby="messageErr"></textarea>
-                <p class="err" id="messageErr"></p>
-              </div>
-
-              <div class="hp" aria-hidden="true">
-                <label for="website">Leave this empty</label>
-                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-              </div>
-
-              <button class="send" type="submit" id="send">Send enquiry</button>
-              <p class="status" id="status" role="status" aria-live="polite"></p>
-              <p class="fine">We use your details only to reply to your enquiry.</p>
-            </form>
-          </div>
-        </div>
+        <p class="sub">Interested in partnering, investing, or piloting our platforms? Reach out to our technology team today.</p>
+        <a class="mail" href="mailto:ContactRaqium@raqiumtech.co.uk">ContactRaqium@raqiumtech.co.uk</a>
+        <p class="loc">United Kingdom</p>
       </div>
     </section>
   </main>
@@ -811,109 +658,6 @@
         entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('drawn'); io.unobserve(en.target); } });
       }, { threshold: 0.25 });
       figs.forEach(function (f) { f.classList.add('armed'); io.observe(f); });
-    })();
-
-    // Enquiry form: checks the fields, then sends them to the Raqium enquiry service, which posts them to Slack
-    (function () {
-      var ENDPOINT = 'https://npidsufrxmvpfjkijxre.supabase.co/functions/v1/raqium-enquiry';
-      var FALLBACK_EMAIL = 'ContactRaqium@raqiumtech.co.uk';
-      var MIN_FILL_MS = 3500; // the service ignores posts faster than this (robots), so a very quick person waits a moment
-      var form = document.getElementById('enquiry');
-      if (!form) return;
-      var opened = Date.now();
-      var statusEl = document.getElementById('status'), sendBtn = document.getElementById('send');
-      var companyRow = document.getElementById('companyRow');
-      var ORDER = ['kind', 'nature', 'company', 'name', 'email', 'phone', 'message'];
-
-      function val(n) { var el = form.elements[n]; return el ? String(el.value).trim() : ''; }
-      function kind() { var c = form.querySelector('input[name="kind"]:checked'); return c ? c.value : ''; }
-      function setErr(n, msg) {
-        var p = document.getElementById(n + 'Err');
-        if (p) p.textContent = msg || '';
-        if (n === 'kind') { document.getElementById('kindBox').classList.toggle('bad', !!msg); return; }
-        var el = form.elements[n];
-        if (!el) return;
-        if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
-      }
-      function focusField(n) {
-        var el = n === 'kind' ? form.querySelector('input[name="kind"]') : form.elements[n];
-        if (el) el.focus();
-      }
-      function check() {
-        var errs = {}, k = kind(), e = val('email'), p = val('phone');
-        if (!k) errs.kind = 'Please choose who is enquiring.';
-        if (!val('nature')) errs.nature = 'Please choose the nature of your enquiry.';
-        if (k === 'business' && val('company').length < 2) errs.company = 'Please give the company or institution name.';
-        if (val('name').length < 2) errs.name = 'Please give a contact name.';
-        if (!e && !p) errs.email = 'Please give an email address or a phone number.';
-        else {
-          if (e && !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/.test(e)) errs.email = 'That email address doesn’t look right.';
-          if (p && (!/^[+()\d][\d\s().+-]{5,28}$/.test(p) || p.replace(/\D/g, '').length < 7)) errs.phone = 'That phone number doesn’t look right.';
-        }
-        if (val('message').length < 10) errs.message = 'Please add a short description of your enquiry.';
-        return errs;
-      }
-      function fail(msg) {
-        statusEl.className = 'status bad';
-        statusEl.textContent = msg;
-        var a = document.createElement('a');
-        a.href = 'mailto:' + FALLBACK_EMAIL;
-        a.textContent = FALLBACK_EMAIL;
-        statusEl.appendChild(a);
-        statusEl.appendChild(document.createTextNode('.'));
-        reset();
-      }
-      function reset() { sendBtn.disabled = false; sendBtn.textContent = 'Send enquiry'; }
-      function done() {
-        var box = document.createElement('div');
-        box.className = 'thanks'; box.tabIndex = -1; box.setAttribute('role', 'status');
-        var h = document.createElement('h3'); h.className = 'h-sans'; h.textContent = 'Thank you';
-        var p = document.createElement('p'); p.textContent = 'Your enquiry has reached the Raqium team. We will reply by email or phone as soon as we can.';
-        box.appendChild(h); box.appendChild(p);
-        form.parentNode.replaceChild(box, form);
-        box.focus();
-      }
-      function send(payload) {
-        payload.elapsed = Date.now() - opened;
-        fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, data: d }; }); })
-          .then(function (res) {
-            if (res.status === 200 && res.data.ok) { done(); return; }
-            if (res.status === 400 && res.data.field && ORDER.indexOf(res.data.field) > -1) {
-              setErr(res.data.field, res.data.message || 'Please check this field.');
-              focusField(res.data.field); reset(); return;
-            }
-            fail(res.status === 429 ? 'Too many attempts just now. Please try again later, or email ' : 'Sorry, that did not send. Please try again, or email ');
-          })
-          .catch(function () { fail('Sorry, that did not send. Please check your connection and try again, or email '); });
-      }
-
-      Array.prototype.forEach.call(form.querySelectorAll('input[name="kind"]'), function (r) {
-        r.addEventListener('change', function () {
-          var biz = kind() === 'business';
-          companyRow.hidden = !biz;
-          setErr('kind', '');
-          if (!biz) setErr('company', '');
-        });
-      });
-      ['nature', 'company', 'name', 'email', 'phone', 'message'].forEach(function (n) {
-        var el = form.elements[n];
-        if (el) el.addEventListener('input', function () { setErr(n, ''); });
-      });
-
-      form.addEventListener('submit', function (ev) {
-        ev.preventDefault();
-        statusEl.className = 'status'; statusEl.textContent = '';
-        var errs = check(), first = null;
-        ORDER.forEach(function (n) { setErr(n, errs[n] || ''); if (errs[n] && !first) first = n; });
-        if (first) { focusField(first); return; }
-        sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
-        var payload = {
-          kind: kind(), nature: val('nature'), company: kind() === 'business' ? val('company') : '',
-          name: val('name'), email: val('email'), phone: val('phone'), message: val('message'), website: val('website')
-        };
-        setTimeout(function () { send(payload); }, Math.max(0, MIN_FILL_MS - (Date.now() - opened)));
-      });
     })();
   </script>
 </body>
